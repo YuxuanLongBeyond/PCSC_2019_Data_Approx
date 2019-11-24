@@ -4,10 +4,8 @@
 
 
 #include "Matrix.h"
-#include <iostream>
 #include <stdexcept>
 #include <cmath>
-#include <vector>
 
 Matrix::Matrix() {
     size0 = 2;
@@ -305,12 +303,12 @@ std::ostream& operator<<(std::ostream& output, const Matrix& B) {
     return output;
 }
 
-std::vector<double> least_squares(const Matrix& A, const std::vector<double> &b) {
+std::vector<double> least_squares(const Matrix& A, const std::vector<double> &b, double s) {
     if (b.size() != A.size0) {
         throw std::invalid_argument( "Inconsistent matrix size!" );
     }
     Matrix A_T = A.transpose();
     std::vector<double> x(A.size1);
-    x = gauss_solve(A_T * A, A_T * b);
+    x = gauss_solve((A_T * A).diagonal_add(s), A_T * b);
     return x;
 }

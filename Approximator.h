@@ -5,4 +5,24 @@
 #ifndef PROJECT_APPROXIMATOR_H
 #define PROJECT_APPROXIMATOR_H
 
+#include <iostream>
+#include <vector>
+#include "Matrix.h"
+
+class Approximator {
+private:
+//    std::string method;
+    std::vector<double> x;
+    std::vector<double> y;
+    int N;
+public:
+    Approximator(std::vector<double>& data_x, std::vector<double>& data_y);
+    std::vector<double> polyfit(int degree) const;
+    std::vector<double> polyval(std::vector<double>& x_test, std::vector<double>& w) const;
+
+    std::vector<double> interp1(std::vector<double>& x_test) const;
+    std::vector<double> spline(std::vector<double>& x_test) const;
+};
+
+
 #endif //PROJECT_APPROXIMATOR_H

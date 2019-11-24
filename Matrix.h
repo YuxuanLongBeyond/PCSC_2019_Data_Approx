@@ -39,7 +39,7 @@ public:
 
     void row_exchange(int i, int j);
     friend std::vector<double> gauss_solve(const Matrix& A, const std::vector<double> &b);
-    friend std::vector<double> least_squares(const Matrix& A, const std::vector<double> &b);
+    friend std::vector<double> least_squares(const Matrix& A, const std::vector<double> &b, double s);
 };
 
 

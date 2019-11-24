@@ -49,7 +49,7 @@ int main() {
     B[2][1] = 3;
     std::cout << B;
 //
-    std::vector<double> y = least_squares(B, b);
+    std::vector<double> y = least_squares(B, b, 0.0);
     std::cout << y[0] << std::endl;
     std::cout << y[1] << std::endl;
 
