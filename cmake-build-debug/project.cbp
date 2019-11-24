@@ -78,6 +78,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Approximator.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Approximator.h">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp">
 			<Option target="project"/>
 		</Unit>
