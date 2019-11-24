@@ -123,32 +123,32 @@ project/fast:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-Approximator.o: Approximator.cpp.o
+Fitter.o: Fitter.cpp.o
 
-.PHONY : Approximator.o
+.PHONY : Fitter.o
 
 # target to build an object file
-Approximator.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Approximator.cpp.o
-.PHONY : Approximator.cpp.o
+Fitter.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.o
+.PHONY : Fitter.cpp.o
 
-Approximator.i: Approximator.cpp.i
+Fitter.i: Fitter.cpp.i
 
-.PHONY : Approximator.i
+.PHONY : Fitter.i
 
 # target to preprocess a source file
-Approximator.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Approximator.cpp.i
-.PHONY : Approximator.cpp.i
+Fitter.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.i
+.PHONY : Fitter.cpp.i
 
-Approximator.s: Approximator.cpp.s
+Fitter.s: Fitter.cpp.s
 
-.PHONY : Approximator.s
+.PHONY : Fitter.s
 
 # target to generate assembly for a file
-Approximator.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Approximator.cpp.s
-.PHONY : Approximator.cpp.s
+Fitter.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.s
+.PHONY : Fitter.cpp.s
 
 Matrix.o: Matrix.cpp.o
 
@@ -213,9 +213,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... project"
-	@echo "... Approximator.o"
-	@echo "... Approximator.i"
-	@echo "... Approximator.s"
+	@echo "... Fitter.o"
+	@echo "... Fitter.i"
+	@echo "... Fitter.s"
 	@echo "... Matrix.o"
 	@echo "... Matrix.i"
 	@echo "... Matrix.s"

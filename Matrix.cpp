@@ -171,7 +171,7 @@ std::vector<double> Matrix::operator*(const std::vector<double> &x) const {
 }
 
 
-int is_zero(double a, double threshold = 1e-10) {
+int is_zero(double a, double threshold = 1e-15) {
     if (abs(a) < threshold) {
         return 1;
     }
@@ -266,6 +266,7 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
         d *= B[i][i];
     }
     if (is_zero(d)) {
+        std::cout << "Zero determinant encountered !" << std::endl;
         throw std::invalid_argument( "Singular Matrix" );
     }
     // back substitution

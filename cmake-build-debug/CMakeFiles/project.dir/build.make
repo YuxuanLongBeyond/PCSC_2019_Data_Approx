@@ -83,31 +83,31 @@ CMakeFiles/project.dir/Matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Matrix.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.cpp -o CMakeFiles/project.dir/Matrix.cpp.s
 
-CMakeFiles/project.dir/Approximator.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/Approximator.cpp.o: ../Approximator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/project.dir/Approximator.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Approximator.cpp.o -c /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Approximator.cpp
+CMakeFiles/project.dir/Fitter.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/Fitter.cpp.o: ../Fitter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/project.dir/Fitter.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Fitter.cpp.o -c /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp
 
-CMakeFiles/project.dir/Approximator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/Approximator.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Approximator.cpp > CMakeFiles/project.dir/Approximator.cpp.i
+CMakeFiles/project.dir/Fitter.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/Fitter.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp > CMakeFiles/project.dir/Fitter.cpp.i
 
-CMakeFiles/project.dir/Approximator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Approximator.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Approximator.cpp -o CMakeFiles/project.dir/Approximator.cpp.s
+CMakeFiles/project.dir/Fitter.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Fitter.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp -o CMakeFiles/project.dir/Fitter.cpp.s
 
 # Object files for target project
 project_OBJECTS = \
 "CMakeFiles/project.dir/main.cpp.o" \
 "CMakeFiles/project.dir/Matrix.cpp.o" \
-"CMakeFiles/project.dir/Approximator.cpp.o"
+"CMakeFiles/project.dir/Fitter.cpp.o"
 
 # External object files for target project
 project_EXTERNAL_OBJECTS =
 
 project: CMakeFiles/project.dir/main.cpp.o
 project: CMakeFiles/project.dir/Matrix.cpp.o
-project: CMakeFiles/project.dir/Approximator.cpp.o
+project: CMakeFiles/project.dir/Fitter.cpp.o
 project: CMakeFiles/project.dir/build.make
 project: CMakeFiles/project.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable project"

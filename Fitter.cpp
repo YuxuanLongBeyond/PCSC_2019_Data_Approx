@@ -5,24 +5,24 @@
 
 #include <stdexcept>
 #include <cmath>
-#include "Approximator.h"
+#include "Fitter.h"
 
-Approximator::Approximator(std::vector<double>& x, std::vector<double>& y) {
+
+Fitter::Fitter(std::vector<double>& x, std::vector<double>& y) {
     int n1 = x.size();
     int n2 = y.size();
     if (n1 != n2) {
         throw std::invalid_argument("Incompatible data size!");
     }
 
-
     N = n1;
-    for (int i = 1; i < N; i ++) {
-        data_x[i] = x[i];
-        data_y[i] = y[i];
+    for (int i = 0; i < N; i ++) {
+        data_x.push_back(x[i]);
+        data_y.push_back(y[i]);
     }
 }
 
-std::vector<double> Approximator::polyfit(int degree) const {
+std::vector<double> Fitter::polyfit(int degree) const {
     if (degree < 0) {
         throw std::invalid_argument("Degree should be positive!");
     }
@@ -45,7 +45,7 @@ std::vector<double> Approximator::polyfit(int degree) const {
     return w;
 }
 
-std::vector<double> Approximator::polyval(std::vector<double>& x_test, std::vector<double>& w) const {
+std::vector<double> Fitter::polyval(std::vector<double>& w, std::vector<double>& x_test) const {
     int m = x_test.size();
     int n = w.size();
     Matrix A(m, n);
@@ -54,12 +54,13 @@ std::vector<double> Approximator::polyval(std::vector<double>& x_test, std::vect
             A[i][j] = pow(x_test[i], j);
         }
     }
+//    std::cout << A << std::endl;
     std::vector<double> y_test;
     y_test = A * w;
     return y_test;
 }
 
-int Approximator::find_index(int start_index, double v) const {
+int Fitter::find_index(int start_index, double v) const {
     if (start_index == -1) {
         if (v < data_x[0]) {
             // extrapolation
@@ -78,7 +79,7 @@ int Approximator::find_index(int start_index, double v) const {
     return index - 1;
 }
 
-std::vector<double> Approximator::interp1(std::vector<double>& x_test) const{
+std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
     std::vector<double> y_test;
     std::vector<double> slope(N - 1);
     for (int i = 0; i < N - 1; i ++) {
@@ -107,14 +108,24 @@ std::vector<double> Approximator::interp1(std::vector<double>& x_test) const{
     return y_test;
 }
 
-std::vector<double> Approximator::spline(std::vector<double>& x_test) const {
+double spline_val(int index, double x, std::vector<double> param) {
+    double result = 0.0;
+    result += pow(x, 3) * param[4 * index];
+    result += pow(x, 2) * param[4 * index + 1];
+    result += x * param[4 * index + 2];
+    result += param[4 * index + 3];
+    return result;
+}
+
+std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     int m = 4 * (N - 1);
     Matrix A(m, m);
     std::vector<double> b(m);
+//    std::cout << data_x[N - 1];
 
     // construct a linear system
     b[0] = 0.0; b[1] = data_y[0];
-    A[0][0] = 1.0; A[0][4] = -1.0;
+    A[0][0] = 6.0 * data_x[0]; A[0][1] = 2.0;
     A[1][0] = pow(data_x[0], 3);
     A[1][1] = pow(data_x[0], 2);
     A[1][2] = data_x[0]; A[1][3] = 1.0;
@@ -135,15 +146,45 @@ std::vector<double> Approximator::spline(std::vector<double>& x_test) const {
         A[row + 3][col] = 6.0 * x; A[row + 3][col + 1] = 2.0;
         A[row + 3][col + 4] = -6.0 * x; A[row + 3][col + 5] = -2.0;
 
+        b[row] = data_y[i]; b[row + 1] = data_y[i]; b[row + 2] = 0.0; b[row + 3] = 0.0;
+
         row += 4;
         col += 4;
     }
 
     b[m - 2] = 0.0; b[m - 1] = data_y[N - 1];
-    A[m - 2][m - 8] = 1.0; A[m - 2][m - 4] = -1.0;
+    A[m - 2][m - 4] = 6.0 * data_x[N - 1]; A[m - 2][m - 3] = 2.0;
     A[m - 1][m - 4] = pow(data_x[N - 1], 3);
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
 
-    
+    std::cout << A << std::endl;
+
+    std::vector<double> param;
+    param = gauss_solve(A, b);
+
+    std::vector<double> y_test;
+    int index = -1; // start_index
+    double interp_out;
+    for (auto v: x_test) {
+
+        if (index < N - 1) {
+            index = find_index(index, v);
+            if (index == -1) {
+                // extrapolation
+                interp_out = spline_val(0, v, param);
+            }
+            else {
+                interp_out = spline_val(index, v, param);
+            }
+        }
+        else {
+            //extrapolation
+            interp_out = spline_val(N - 2, v, param);
+        }
+        y_test.push_back(interp_out);
+    }
+    return y_test;
+
+
 }
