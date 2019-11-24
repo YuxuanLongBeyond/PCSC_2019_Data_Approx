@@ -160,6 +160,15 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
 
     std::cout << A << std::endl;
 
+
+    //scaling to prevent zero determinant
+    A = 10 * A;
+    for (int i = 0; i < m; i ++) {
+        b[i] *= 10;
+    }
+
+
+
     std::vector<double> param;
     param = gauss_solve(A, b);
 
@@ -185,6 +194,4 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
         y_test.push_back(interp_out);
     }
     return y_test;
-
-
 }

@@ -56,7 +56,7 @@ int main() {
 
 
     // brief test
-    int N = 5;
+    int N = 10;
     std::vector<double> X(N);
     std::vector<double> Y(N);
     std::vector<double> X_test(N + 1);
