@@ -225,7 +225,7 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
             }
         }
         if (flag) {
-            throw std::invalid_argument( "Singular Matrix" );
+            throw std::invalid_argument( "Singular Matrix encountered!" );
         }
         B.row_exchange(0, row);
         double tem = x[0];
@@ -262,15 +262,12 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
         }
     }
 
-    // check if the diagonal has zeros
-    for (int i = 0; i < n; i ++) {
+    // back substitution
+    for (int i = n - 1; i >= 0; i --) {
+        // check if the diagonal has zeros
         if (is_zero(B[i][i])) {
             throw std::invalid_argument( "Singular matrix encountered!" );
         }
-    }
-
-    // back substitution
-    for (int i = n - 1; i >= 0; i --) {
         for (int j = n - 1; j > i; j --) {
             x[i] -= x[j] * B[i][j];
         }

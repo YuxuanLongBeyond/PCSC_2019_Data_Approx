@@ -22,13 +22,18 @@ Fitter::Fitter(std::vector<double>& x, std::vector<double>& y) {
     }
 }
 
-std::vector<double> Fitter::polyfit(int degree) const {
+std::vector<double> Fitter::polyfit(int degree, double lambda = 0.001) const {
     if (degree < 0) {
-        throw std::invalid_argument("Degree should be positive!");
+        throw std::invalid_argument("Degree should be non-negative!");
     }
     if (degree > N - 1) {
         throw std::invalid_argument("Degree should be equal or smaller than N - 1!");
     }
+
+    if (lambda < 0) {
+        throw std::invalid_argument("Lambda should be non-negative!");
+    }
+
     std::vector<double> w;
     Matrix A(N, degree + 1);
     for (int i = 0; i < N; i ++) {
@@ -40,7 +45,7 @@ std::vector<double> Fitter::polyfit(int degree) const {
         w = gauss_solve(A, data_y);
     }
     else {
-        w = least_squares(A, data_y, 0.0);
+        w = least_squares(A, data_y, lambda);
     }
     return w;
 }
@@ -80,6 +85,10 @@ int Fitter::find_index(int start_index, double v) const {
 }
 
 std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
     std::vector<double> y_test;
     std::vector<double> slope(N - 1);
     for (int i = 0; i < N - 1; i ++) {
@@ -118,6 +127,11 @@ double spline_val(int index, double x, std::vector<double> param) {
 }
 
 std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
+
     int m = 4 * (N - 1);
     Matrix A(m, m);
     std::vector<double> b(m);
@@ -187,6 +201,10 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
 }
 
 std::vector<double> Fitter::dct_fit() const {
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
     // compute DCT coefficients
     int num;
     int index;

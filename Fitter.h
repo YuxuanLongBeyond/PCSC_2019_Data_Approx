@@ -18,7 +18,7 @@ private:
     int N;
 public:
     Fitter(std::vector<double>& x, std::vector<double>& y);
-    std::vector<double> polyfit(int degree) const;
+    std::vector<double> polyfit(int degree, double lambda) const;
     std::vector<double> polyval(std::vector<double>& w, std::vector<double>& x_test) const;
 
     int find_index(int start_index, double v) const;

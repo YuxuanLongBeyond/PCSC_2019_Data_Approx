@@ -72,15 +72,15 @@ int main() {
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
-//    w = approx.polyfit(2);
+    w = approx.polyfit(2, 0.001);
 //    std::cout << w[0] << w[1] << w[2] << std::endl;
-//    Y_test = approx.polyval(w, X_test);
+    Y_test = approx.polyval(w, X_test);
 //    Y_test = approx.interp1(X_test);
 //    Y_test = approx.spline(X_test);
 
-    w = approx.dct_fit();
+//    w = approx.dct_fit();
 //    std::cout << w[0] << w[1] << w[2] << std::endl;
-    Y_test = approx.dct_val(w, X_test);
+//    Y_test = approx.dct_val(w, X_test);
     for (int i = 0; i < N + 1; i ++) {
         std::cout << Y_test[i] << ' ';
     }
