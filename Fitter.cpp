@@ -157,17 +157,7 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     A[m - 1][m - 4] = pow(data_x[N - 1], 3);
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
-
-    std::cout << A << std::endl;
-
-
-    //scaling to prevent zero determinant
-    A = 10 * A;
-    for (int i = 0; i < m; i ++) {
-        b[i] *= 10;
-    }
-
-
+    
 
     std::vector<double> param;
     param = gauss_solve(A, b);

@@ -261,14 +261,14 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
             }
         }
     }
-    double d = 1; // store determinant
+
+    // check if the diagonal has zeros
     for (int i = 0; i < n; i ++) {
-        d *= B[i][i];
+        if (is_zero(B[i][i])) {
+            throw std::invalid_argument( "Singular matrix encountered!" );
+        }
     }
-    if (is_zero(d)) {
-        std::cout << "Zero determinant encountered !" << std::endl;
-        throw std::invalid_argument( "Singular Matrix" );
-    }
+
     // back substitution
     for (int i = n - 1; i >= 0; i --) {
         for (int j = n - 1; j > i; j --) {
