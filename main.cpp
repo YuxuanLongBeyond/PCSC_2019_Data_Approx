@@ -61,26 +61,29 @@ int main() {
     std::vector<double> Y(N);
     std::vector<double> X_test(N + 1);
     for (int i = 0; i < N; i ++) {
-        X[i] = (double)i * 0.1;
+        X[i] = (double)i * 0.01;
         Y[i] = sin(X[i] * M_PI);
-        X_test[i + 1] = X[i] + 0.05;
+        X_test[i + 1] = X[i] + 0.005;
     }
-    X_test[0] = -0.05;
+    X_test[0] = -0.005;
 
 
 
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
-    w = approx.polyfit(2);
+//    w = approx.polyfit(2);
 //    std::cout << w[0] << w[1] << w[2] << std::endl;
 //    Y_test = approx.polyval(w, X_test);
 //    Y_test = approx.interp1(X_test);
-    Y_test = approx.spline(X_test);
+//    Y_test = approx.spline(X_test);
+
+    w = approx.dct_fit();
+//    std::cout << w[0] << w[1] << w[2] << std::endl;
+    Y_test = approx.dct_val(w, X_test);
     for (int i = 0; i < N + 1; i ++) {
         std::cout << Y_test[i] << ' ';
     }
-
     return 0;
 
 }

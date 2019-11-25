@@ -25,6 +25,9 @@ public:
 
     std::vector<double> interp1(std::vector<double>& x_test) const;
     std::vector<double> spline(std::vector<double>& x_test) const;
+
+    std::vector<double> dct_fit() const;
+    std::vector<double> dct_val(std::vector<double>& w, std::vector<double>& x_test) const;
 };
 
 #endif //PROJECT_FITTER_H

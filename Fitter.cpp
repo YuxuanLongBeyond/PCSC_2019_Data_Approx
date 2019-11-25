@@ -157,7 +157,7 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     A[m - 1][m - 4] = pow(data_x[N - 1], 3);
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
-    
+
 
     std::vector<double> param;
     param = gauss_solve(A, b);
@@ -180,6 +180,52 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
         else {
             //extrapolation
             interp_out = spline_val(N - 2, v, param);
+        }
+        y_test.push_back(interp_out);
+    }
+    return y_test;
+}
+
+std::vector<double> Fitter::dct_fit() const {
+    // compute DCT coefficients
+    int num;
+    int index;
+    if (remainder(N, 2) == 0) {
+        num = N / 2 + 1;
+        index = N / 2;
+    }
+    else {
+        num = (N + 1) / 2;
+        index = num;
+    }
+
+    std::vector<double> w;
+    double a_k;
+    for (int k = 0; k < num; k ++) {
+        a_k = 0.0;
+        for (int n = 0; n < N; n ++) {
+            a_k += data_y[n] * cos(2.0 * M_PI * (double)k * (double)n / (double)N);
+        }
+        if ((k > 0) && (k < index)) {
+            a_k *= 2.0;
+        }
+        w.push_back(a_k / (double)N);
+    }
+    return w;
+}
+
+std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>& x_test) const {
+    // assume the data is evenly placed
+    double x0 = data_x[0];
+    double interval = (data_x[N - 1] - x0) / (double)(N - 1) * (double)N;
+    int w_size = w.size();
+
+    std::vector<double> y_test;
+    double interp_out;
+    for (auto v: x_test) {
+        interp_out = 0.0;
+        for (int k = 0; k < w_size; k ++) {
+            interp_out += w[k] * cos(2.0 * M_PI * (double)k * (v - x0) / interval);
         }
         y_test.push_back(interp_out);
     }
