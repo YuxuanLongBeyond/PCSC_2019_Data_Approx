@@ -24,6 +24,7 @@ public:
     int find_index(int start_index, double v) const;
 
     std::vector<double> interp1(std::vector<double>& x_test) const;
+    double spline_val(int index, double x, std::vector<double> param) const;
     std::vector<double> spline(std::vector<double>& x_test) const;
 
     std::vector<double> dct_fit() const;

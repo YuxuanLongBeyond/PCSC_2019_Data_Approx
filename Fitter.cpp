@@ -117,7 +117,7 @@ std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
     return y_test;
 }
 
-double spline_val(int index, double x, std::vector<double> param) {
+double Fitter::spline_val(int index, double x, std::vector<double> param) const {
     double result = 0.0;
     result += pow(x, 3) * param[4 * index];
     result += pow(x, 2) * param[4 * index + 1];
