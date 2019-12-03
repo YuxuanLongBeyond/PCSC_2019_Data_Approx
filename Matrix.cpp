@@ -225,7 +225,7 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
             }
         }
         if (flag) {
-            throw std::invalid_argument( "Singular Matrix encountered!" );
+            throw std::invalid_argument( "Singular Matrix" );
         }
         B.row_exchange(0, row);
         double tem = x[0];
@@ -261,13 +261,16 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
             }
         }
     }
-
+    double d = 1; // store determinant
+    for (int i = 0; i < n; i ++) {
+        d *= B[i][i];
+    }
+    if (is_zero(d)) {
+        std::cout << "Zero determinant encountered !" << std::endl;
+        throw std::invalid_argument( "Singular Matrix" );
+    }
     // back substitution
     for (int i = n - 1; i >= 0; i --) {
-        // check if the diagonal has zeros
-        if (is_zero(B[i][i])) {
-            throw std::invalid_argument( "Singular matrix encountered!" );
-        }
         for (int j = n - 1; j > i; j --) {
             x[i] -= x[j] * B[i][j];
         }

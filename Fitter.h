@@ -18,17 +18,13 @@ private:
     int N;
 public:
     Fitter(std::vector<double>& x, std::vector<double>& y);
-    std::vector<double> polyfit(int degree, double lambda) const;
+    std::vector<double> polyfit(int degree) const;
     std::vector<double> polyval(std::vector<double>& w, std::vector<double>& x_test) const;
 
     int find_index(int start_index, double v) const;
 
     std::vector<double> interp1(std::vector<double>& x_test) const;
-    double spline_val(int index, double x, std::vector<double> param) const;
     std::vector<double> spline(std::vector<double>& x_test) const;
-
-    std::vector<double> dct_fit() const;
-    std::vector<double> dct_val(std::vector<double>& w, std::vector<double>& x_test) const;
 };
 
 #endif //PROJECT_FITTER_H
