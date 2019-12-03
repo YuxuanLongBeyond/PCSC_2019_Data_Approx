@@ -4,6 +4,9 @@
 #include "Matrix.h"
 #include <vector>
 #include "Fitter.h"
+#include "Inputdata.h"
+#include <fstream>
+#include <cassert>
 
 int main() {
     Matrix A(3, 3);
@@ -54,32 +57,65 @@ int main() {
 //    std::cout << y[0] << std::endl;
 //    std::cout << y[1] << std::endl;
 
+    //generate data
+    int N_gen = 20;
+    double x_gen[N_gen];
+    double y_gen[N_gen];
+    for (int i = 0; i < N_gen; i++) {
+        x_gen[i] = (double) i;
+        y_gen[i] = cos(3 * x_gen[i] * M_PI / N_gen);
+    }
+    std::ofstream generate_data("data.dat");
+    assert(generate_data.is_open());
+    for (int i = 0 ; i < N_gen; i++){
+        generate_data << x_gen[i] << " " << y_gen[i] << "\n";
+    }
+    generate_data.close();
 
     // brief test
-    int N = 10;
-    std::vector<double> X(N);
-    std::vector<double> Y(N);
-    std::vector<double> X_test(N + 1);
-    for (int i = 0; i < N; i ++) {
-        X[i] = (double)i * 0.1;
-        Y[i] = sin(X[i] * M_PI);
-        X_test[i + 1] = X[i] + 0.05;
-    }
-    X_test[0] = -0.05;
+    int N_test = 1000;
+    std::vector<double> X;
+    std::vector<double> Y;
+    std::vector<double> X_test(N_test);
+//    for (int i = 0; i < N; i ++) {
+//        X[i] = (double)i * 0.1;
+//        Y[i] = sin(X[i] * M_PI);
+//        X_test[i + 1] = X[i] + 0.05;
+//    }
+//    X_test[0] = -0.05;
+    Inputdata train;
+    X = train.get_data_x();
+    Y = train.get_data_y();
+    X_test = train.test_cgl(N_test);
 
 
 
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
-    w = approx.polyfit(2);
+//    w = approx.polyfit(2, 0.001);
 //    std::cout << w[0] << w[1] << w[2] << std::endl;
-//    Y_test = approx.polyval(w, X_test);
+    Y_test = approx.polyval(w, X_test);
 //    Y_test = approx.interp1(X_test);
     Y_test = approx.spline(X_test);
-    for (int i = 0; i < N + 1; i ++) {
+
+//    w = approx.dct_fit();
+//    std::cout << w[0] << w[1] << w[2] << std::endl;
+//    Y_test = approx.dct_val(w, X_test);
+//    for (int i = 0; i < N + 1; i ++) {
+//        std::cout << Y_test[i] << ' ';
+//    }
+
+    for (int i = 0; i < N_test; i ++) {
         std::cout << Y_test[i] << ' ';
     }
+
+    std::ofstream write_output("Output.dat");
+    assert(write_output.is_open());
+    for (int i = 0; i < N_test; i++){
+        write_output << X_test[i] << " " << Y_test[i] << "\n";
+    }
+    write_output.close();
 
     return 0;
 
