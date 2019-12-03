@@ -22,13 +22,18 @@ Fitter::Fitter(std::vector<double>& x, std::vector<double>& y) {
     }
 }
 
-std::vector<double> Fitter::polyfit(int degree) const {
+std::vector<double> Fitter::polyfit(int degree, double lambda = 0.001) const {
     if (degree < 0) {
-        throw std::invalid_argument("Degree should be positive!");
+        throw std::invalid_argument("Degree should be non-negative!");
     }
     if (degree > N - 1) {
         throw std::invalid_argument("Degree should be equal or smaller than N - 1!");
     }
+
+    if (lambda < 0) {
+        throw std::invalid_argument("Lambda should be non-negative!");
+    }
+
     std::vector<double> w;
     Matrix A(N, degree + 1);
     for (int i = 0; i < N; i ++) {
@@ -40,7 +45,7 @@ std::vector<double> Fitter::polyfit(int degree) const {
         w = gauss_solve(A, data_y);
     }
     else {
-        w = least_squares(A, data_y, 0.0);
+        w = least_squares(A, data_y, lambda);
     }
     return w;
 }
@@ -80,6 +85,10 @@ int Fitter::find_index(int start_index, double v) const {
 }
 
 std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
     std::vector<double> y_test;
     std::vector<double> slope(N - 1);
     for (int i = 0; i < N - 1; i ++) {
@@ -108,7 +117,7 @@ std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
     return y_test;
 }
 
-double spline_val(int index, double x, std::vector<double> param) {
+double Fitter::spline_val(int index, double x, std::vector<double> param) const {
     double result = 0.0;
     result += pow(x, 3) * param[4 * index];
     result += pow(x, 2) * param[4 * index + 1];
@@ -118,6 +127,11 @@ double spline_val(int index, double x, std::vector<double> param) {
 }
 
 std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
+
     int m = 4 * (N - 1);
     Matrix A(m, m);
     std::vector<double> b(m);
@@ -158,16 +172,6 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
 
-    std::cout << A << std::endl;
-
-
-    //scaling to prevent zero determinant
-    A = 10 * A;
-    for (int i = 0; i < m; i ++) {
-        b[i] *= 10;
-    }
-
-
 
     std::vector<double> param;
     param = gauss_solve(A, b);
@@ -190,6 +194,56 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
         else {
             //extrapolation
             interp_out = spline_val(N - 2, v, param);
+        }
+        y_test.push_back(interp_out);
+    }
+    return y_test;
+}
+
+std::vector<double> Fitter::dct_fit() const {
+    if (N < 2) {
+        throw std::invalid_argument("Too little input samples");
+    }
+
+    // compute DCT coefficients
+    int num;
+    int index;
+    if (remainder(N, 2) == 0) {
+        num = N / 2 + 1;
+        index = N / 2;
+    }
+    else {
+        num = (N + 1) / 2;
+        index = num;
+    }
+
+    std::vector<double> w;
+    double a_k;
+    for (int k = 0; k < num; k ++) {
+        a_k = 0.0;
+        for (int n = 0; n < N; n ++) {
+            a_k += data_y[n] * cos(2.0 * M_PI * (double)k * (double)n / (double)N);
+        }
+        if ((k > 0) && (k < index)) {
+            a_k *= 2.0;
+        }
+        w.push_back(a_k / (double)N);
+    }
+    return w;
+}
+
+std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>& x_test) const {
+    // assume the data is evenly placed
+    double x0 = data_x[0];
+    double interval = (data_x[N - 1] - x0) / (double)(N - 1) * (double)N;
+    int w_size = w.size();
+
+    std::vector<double> y_test;
+    double interp_out;
+    for (auto v: x_test) {
+        interp_out = 0.0;
+        for (int k = 0; k < w_size; k ++) {
+            interp_out += w[k] * cos(2.0 * M_PI * (double)k * (v - x0) / interval);
         }
         y_test.push_back(interp_out);
     }
