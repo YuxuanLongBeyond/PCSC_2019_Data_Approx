@@ -172,7 +172,7 @@ std::vector<double> Matrix::operator*(const std::vector<double> &x) const {
 
 
 int is_zero(double a, double threshold = 1e-15) {
-    if (abs(a) < threshold) {
+    if (std::abs(a) < threshold) {
         return 1;
     }
     else {
