@@ -8,7 +8,7 @@
 #include <fstream>
 #include <cassert>
 
-int main() {
+int main(int argc, char* argv[]) {
     Matrix A(3, 3);
     A[0][0] = 0;
     A[0][1] = 1;
@@ -57,13 +57,39 @@ int main() {
 //    std::cout << y[0] << std::endl;
 //    std::cout << y[1] << std::endl;
 
+
+
     //generate data
-    int N_gen = 20;
+    int N_gen;
+    double x_min;
+    double x_max;
+    double x_step;
+    int choice;
+    std::cout << "Please select your test function (1/2):" << std::endl;
+    std::cout << "1. cos(3 * Pi * x)" << std::endl;
+    std::cout << "2. 1 / (1 + x ^ 2)" << std::endl;
+    std::cin >> choice;
+    assert(choice == 1 || choice == 2);
+    std::cout << "Please input the number of data points to generate, which is must be an integer larger than 1:";
+    std::cin >> N_gen;
+    assert(N_gen >= 2);
+    std::cout << "Please input the range of x:" << std::endl;
+    std::cout << "The minimum of x is:";
+    std::cin >> x_min;
+    std::cout << "The maximum of x is:";
+    std::cin >> x_max;
+    x_step = (x_max - x_min) / (N_gen - 1);
     double x_gen[N_gen];
     double y_gen[N_gen];
     for (int i = 0; i < N_gen; i++) {
-        x_gen[i] = (double) i;
-        y_gen[i] = cos(3 * x_gen[i] * M_PI / N_gen);
+        x_gen[i] = x_min + (double) i * x_step;
+        if(choice == 1){
+            y_gen[i] = cos(3 * x_gen[i] * M_PI);
+        }
+        else{
+            y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
+        }
+
     }
     std::ofstream generate_data("data.dat");
     assert(generate_data.is_open());
@@ -71,18 +97,16 @@ int main() {
         generate_data << x_gen[i] << " " << y_gen[i] << "\n";
     }
     generate_data.close();
+    std::cout << "Data is generated." << std::endl;
 
     // brief test
-    int N_test = 1000;
+    int N_test;
+    std::cout << "Please input the number of test data points, which is must be an integer larger than 1:";
+    std::cin >> N_test;
+    assert(N_test >= 2);
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
-//    for (int i = 0; i < N; i ++) {
-//        X[i] = (double)i * 0.1;
-//        Y[i] = sin(X[i] * M_PI);
-//        X_test[i + 1] = X[i] + 0.05;
-//    }
-//    X_test[0] = -0.05;
     Inputdata train;
     X = train.get_data_x();
     Y = train.get_data_y();
@@ -93,18 +117,36 @@ int main() {
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
-//    w = approx.polyfit(2, 0.001);
-//    std::cout << w[0] << w[1] << w[2] << std::endl;
-    Y_test = approx.polyval(w, X_test);
-//    Y_test = approx.interp1(X_test);
-    Y_test = approx.spline(X_test);
+    int choice_m;
+    std::cout << "Please select the approximation method (1/2/3/4):" << std::endl;
+    std::cout << "1. Polynomial\n2. Interpolation\n3. Spline\n4. DCT\n";
+    std::cin >> choice_m;
+    if (choice_m == 1){
+        int degree;
+        double lambda_;
+        std::cout << "Degree: ";
+        std::cin >> degree;
+        std::cout << "lambda: ";
+        std::cin >> lambda_;
+        w = approx.polyfit(degree, lambda_);
+        for (int i_w = 0; i_w < degree; i_w++){
+            std::cout << w[i_w] << " ";
+        }
+        std::cout << std::endl;
+        Y_test = approx.polyval(w, X_test);
+    }
+    if (choice_m == 2){
+        Y_test = approx.interp1(X_test);
+    }
+    if (choice_m == 3){
+        Y_test = approx.spline(X_test);
+    }
+    if (choice_m == 4){
+        w = approx.dct_fit();
+        std::cout << w[0] << w[1] << w[2] << std::endl;
+        Y_test = approx.dct_val(w, X_test);
+    }
 
-//    w = approx.dct_fit();
-//    std::cout << w[0] << w[1] << w[2] << std::endl;
-//    Y_test = approx.dct_val(w, X_test);
-//    for (int i = 0; i < N + 1; i ++) {
-//        std::cout << Y_test[i] << ' ';
-//    }
 
     for (int i = 0; i < N_test; i ++) {
         std::cout << Y_test[i] << ' ';

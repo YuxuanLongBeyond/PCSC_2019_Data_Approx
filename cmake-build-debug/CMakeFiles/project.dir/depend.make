@@ -5,10 +5,14 @@ CMakeFiles/project.dir/Fitter.cpp.o: ../Fitter.cpp
 CMakeFiles/project.dir/Fitter.cpp.o: ../Fitter.h
 CMakeFiles/project.dir/Fitter.cpp.o: ../Matrix.h
 
+CMakeFiles/project.dir/Inputdata.cpp.o: ../Inputdata.cpp
+CMakeFiles/project.dir/Inputdata.cpp.o: ../Inputdata.h
+
 CMakeFiles/project.dir/Matrix.cpp.o: ../Matrix.cpp
 CMakeFiles/project.dir/Matrix.cpp.o: ../Matrix.h
 
 CMakeFiles/project.dir/main.cpp.o: ../Fitter.h
+CMakeFiles/project.dir/main.cpp.o: ../Inputdata.h
 CMakeFiles/project.dir/main.cpp.o: ../Matrix.h
 CMakeFiles/project.dir/main.cpp.o: ../main.cpp
 

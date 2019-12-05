@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
+CMAKE_COMMAND = /home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
+RM = /home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx
+CMAKE_SOURCE_DIR = /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug
+CMAKE_BINARY_DIR = /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/project.dir/depend.make
@@ -59,48 +59,62 @@ include CMakeFiles/project.dir/flags.make
 
 CMakeFiles/project.dir/main.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/project.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/main.cpp.o -c /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/project.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/main.cpp.o -c /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp
 
 CMakeFiles/project.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp > CMakeFiles/project.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp > CMakeFiles/project.dir/main.cpp.i
 
 CMakeFiles/project.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp -o CMakeFiles/project.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp -o CMakeFiles/project.dir/main.cpp.s
 
 CMakeFiles/project.dir/Matrix.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/Matrix.cpp.o: ../Matrix.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/project.dir/Matrix.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Matrix.cpp.o -c /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/project.dir/Matrix.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Matrix.cpp.o -c /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.cpp
 
 CMakeFiles/project.dir/Matrix.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/Matrix.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.cpp > CMakeFiles/project.dir/Matrix.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.cpp > CMakeFiles/project.dir/Matrix.cpp.i
 
 CMakeFiles/project.dir/Matrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Matrix.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Matrix.cpp -o CMakeFiles/project.dir/Matrix.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.cpp -o CMakeFiles/project.dir/Matrix.cpp.s
 
 CMakeFiles/project.dir/Fitter.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/Fitter.cpp.o: ../Fitter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/project.dir/Fitter.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Fitter.cpp.o -c /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/project.dir/Fitter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Fitter.cpp.o -c /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.cpp
 
 CMakeFiles/project.dir/Fitter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/Fitter.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp > CMakeFiles/project.dir/Fitter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.cpp > CMakeFiles/project.dir/Fitter.cpp.i
 
 CMakeFiles/project.dir/Fitter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Fitter.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Fitter.cpp -o CMakeFiles/project.dir/Fitter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.cpp -o CMakeFiles/project.dir/Fitter.cpp.s
+
+CMakeFiles/project.dir/Inputdata.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/Inputdata.cpp.o: ../Inputdata.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/project.dir/Inputdata.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/project.dir/Inputdata.cpp.o -c /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.cpp
+
+CMakeFiles/project.dir/Inputdata.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/project.dir/Inputdata.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.cpp > CMakeFiles/project.dir/Inputdata.cpp.i
+
+CMakeFiles/project.dir/Inputdata.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/project.dir/Inputdata.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.cpp -o CMakeFiles/project.dir/Inputdata.cpp.s
 
 # Object files for target project
 project_OBJECTS = \
 "CMakeFiles/project.dir/main.cpp.o" \
 "CMakeFiles/project.dir/Matrix.cpp.o" \
-"CMakeFiles/project.dir/Fitter.cpp.o"
+"CMakeFiles/project.dir/Fitter.cpp.o" \
+"CMakeFiles/project.dir/Inputdata.cpp.o"
 
 # External object files for target project
 project_EXTERNAL_OBJECTS =
@@ -108,9 +122,10 @@ project_EXTERNAL_OBJECTS =
 project: CMakeFiles/project.dir/main.cpp.o
 project: CMakeFiles/project.dir/Matrix.cpp.o
 project: CMakeFiles/project.dir/Fitter.cpp.o
+project: CMakeFiles/project.dir/Inputdata.cpp.o
 project: CMakeFiles/project.dir/build.make
 project: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable project"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/project.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +138,6 @@ CMakeFiles/project.dir/clean:
 .PHONY : CMakeFiles/project.dir/clean
 
 CMakeFiles/project.dir/depend:
-	cd /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/project.dir/depend
 
