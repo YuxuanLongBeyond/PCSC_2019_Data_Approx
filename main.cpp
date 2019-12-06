@@ -49,6 +49,8 @@ int main(int argc, char* argv[]) {
     double x_min;
     double x_max;
     std::string approx_method;
+    int poly_degree;
+    double poly_lambda;
     const char ConfigFile[]= "config.txt";// read configuration file
     Config configSettings(ConfigFile);
     choice_f = configSettings.Read("function_type", 1);
@@ -58,8 +60,8 @@ int main(int argc, char* argv[]) {
     x_max = configSettings.Read("x_input_max", 1);
     choice_node = configSettings.Read("node_type", 1);
     approx_method = configSettings.Read("approximation_method", approx_method);
-
-
+    poly_degree = configSettings.Read("polynomial_degree", 2);
+    poly_lambda = configSettings.Read("polynomial_lambda", 0.001);
 
     assert(choice_f == 1 || choice_f == 2);
     assert(N_gen >= 2);
@@ -95,6 +97,7 @@ int main(int argc, char* argv[]) {
     std::cout << "Data is generated." << std::endl;
 
 
+
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
@@ -102,20 +105,15 @@ int main(int argc, char* argv[]) {
     test.Readtestdata();
     X = test.get_data_x();
     Y = test.get_data_y();
+    std::cout << std::endl;
     X_test = test.gen_x_test(N_test);
 
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
     if (approx_method == "polynomial"){
-        int degree;
-        double lambda_;
-        std::cout << "Degree: ";
-        std::cin >> degree;
-        std::cout << "lambda: ";
-        std::cin >> lambda_;
-        w = approx.polyfit(degree, lambda_);
-        for (int i_w = 0; i_w < degree; i_w++){
+        w = approx.polyfit(poly_degree, poly_lambda);
+        for (int i_w = 0; i_w < poly_degree; i_w++){
             std::cout << w[i_w] << " ";
         }
         std::cout << std::endl;

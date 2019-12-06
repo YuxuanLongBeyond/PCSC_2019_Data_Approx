@@ -62,7 +62,7 @@ std::vector<double> Inputdata::gen_x_test(int N_test) const {
     std::vector<double> x_test;
     double test[N_test];
     int N = data_x.size();
-    for (int i = 0; i < N_test; i++){
+    for (int i = 0; i < N; i++){
         if (min > data_x[i]){
             min = data_x[i];
         }
