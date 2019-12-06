@@ -1,12 +1,15 @@
 #include <iostream>
+#include <fstream>
 #include <cmath>
 #include <stdexcept>
 #include "Matrix.h"
 #include <vector>
+#include <map>
+#include <cstdio>
 #include "Fitter.h"
 #include "Inputdata.h"
-#include <fstream>
 #include <cassert>
+#include "gnuplot_i.hpp"
 
 int main(int argc, char* argv[]) {
     Matrix A(3, 3);
@@ -79,8 +82,8 @@ int main(int argc, char* argv[]) {
     std::cout << "The maximum of x is:";
     std::cin >> x_max;
     x_step = (x_max - x_min) / (N_gen - 1);
-    double x_gen[N_gen];
-    double y_gen[N_gen];
+    std::vector<double> x_gen(N_gen);
+    std::vector<double> y_gen(N_gen);
     for (int i = 0; i < N_gen; i++) {
         x_gen[i] = x_min + (double) i * x_step;
         if(choice == 1){
@@ -158,6 +161,10 @@ int main(int argc, char* argv[]) {
         write_output << X_test[i] << " " << Y_test[i] << "\n";
     }
     write_output.close();
+
+    Gnuplot gp = Gnuplot("lines");
+    gp.set_style("points");
+    gp.plot_xy(X_test, Y_test, "Approximation");
 
     return 0;
 

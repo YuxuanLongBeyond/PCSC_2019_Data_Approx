@@ -204,6 +204,33 @@ Matrix.cpp.s:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Matrix.cpp.s
 .PHONY : Matrix.cpp.s
 
+gnuplot_i.o: gnuplot_i.cpp.o
+
+.PHONY : gnuplot_i.o
+
+# target to build an object file
+gnuplot_i.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.o
+.PHONY : gnuplot_i.cpp.o
+
+gnuplot_i.i: gnuplot_i.cpp.i
+
+.PHONY : gnuplot_i.i
+
+# target to preprocess a source file
+gnuplot_i.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.i
+.PHONY : gnuplot_i.cpp.i
+
+gnuplot_i.s: gnuplot_i.cpp.s
+
+.PHONY : gnuplot_i.s
+
+# target to generate assembly for a file
+gnuplot_i.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.s
+.PHONY : gnuplot_i.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -249,6 +276,9 @@ help:
 	@echo "... Matrix.o"
 	@echo "... Matrix.i"
 	@echo "... Matrix.s"
+	@echo "... gnuplot_i.o"
+	@echo "... gnuplot_i.i"
+	@echo "... gnuplot_i.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

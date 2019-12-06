@@ -11,8 +11,12 @@ CMakeFiles/project.dir/Inputdata.cpp.o: ../Inputdata.h
 CMakeFiles/project.dir/Matrix.cpp.o: ../Matrix.cpp
 CMakeFiles/project.dir/Matrix.cpp.o: ../Matrix.h
 
+CMakeFiles/project.dir/gnuplot_i.cpp.o: ../gnuplot_i.cpp
+CMakeFiles/project.dir/gnuplot_i.cpp.o: ../gnuplot_i.hpp
+
 CMakeFiles/project.dir/main.cpp.o: ../Fitter.h
 CMakeFiles/project.dir/main.cpp.o: ../Inputdata.h
 CMakeFiles/project.dir/main.cpp.o: ../Matrix.h
+CMakeFiles/project.dir/main.cpp.o: ../gnuplot_i.hpp
 CMakeFiles/project.dir/main.cpp.o: ../main.cpp
 

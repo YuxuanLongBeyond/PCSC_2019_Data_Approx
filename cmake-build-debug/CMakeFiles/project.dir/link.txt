@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/project.dir/main.cpp.o CMakeFiles/project.dir/Matrix.cpp.o CMakeFiles/project.dir/Fitter.cpp.o CMakeFiles/project.dir/Inputdata.cpp.o  -o project 
+/usr/bin/c++  -g   CMakeFiles/project.dir/main.cpp.o CMakeFiles/project.dir/Matrix.cpp.o CMakeFiles/project.dir/Fitter.cpp.o CMakeFiles/project.dir/Inputdata.cpp.o CMakeFiles/project.dir/gnuplot_i.cpp.o  -o project 

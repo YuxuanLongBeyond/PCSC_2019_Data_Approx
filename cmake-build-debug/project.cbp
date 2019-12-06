@@ -102,6 +102,12 @@
 		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp">
 			<Option target="project"/>
 		</Unit>
