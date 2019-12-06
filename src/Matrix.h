@@ -41,50 +41,115 @@ public:
     ~Matrix();
 
     /**
-     * Set all entries of the matrix to zeros
+     * Set all entries of the matrix to zeros (usually used in constructor)
      */
     void make_zero();
 
     /**
-     *
+     * Indexing operator
      * @param i index of the row of the matrix
      * @return i th row of the matrix, in the form of 1D array
      */
     double* operator[](int i) const;
 
-
+    /**
+     * Assignment operator
+     * @param B a matrix
+     * @return the matrix itself by assigning B to it
+     */
     Matrix& operator=(const Matrix& B);
 
+    /**
+     * Addition operator
+     * @param B a matrix
+     * @return the addition of the matrix and B
+     */
     Matrix operator+(const Matrix& B) const;
 
+    /**
+     * Subtraction operator
+     * @param B a matrix
+     * @return the subtraction of B from the matrix
+     */
     Matrix operator-(const Matrix &B) const;
 
+    /**
+     * Opposite sign operator
+     * @return -1 times the matrix
+     */
     Matrix operator-() const;
 
+    /**
+     * Matrix multiplication operator (for matrix times matrix)
+     * @param B a matrix
+     * @return the matrix times B
+     */
     Matrix operator*(const Matrix& B) const;
 
+    /**
+     * Matrix multiplication operator
+     * @param x a vector
+     * @return the matrix times the input vector x
+     */
     std::vector<double> operator*(const std::vector<double> &x) const;
 
+    /**
+     * Matrix multiplication operator
+     * @param s a scalar
+     * @return the matrix scaled by s
+     */
     Matrix operator*(double s) const;
 
+    /**
+     * Add constant to the diagonal
+     * @param s a scalar
+     * @return the matrix which its diagonal is incremented by s
+     */
     Matrix diagonal_add(double s) const;
 
+    /**
+     * Transpose operator
+     * @return the transpose of the matrix
+     */
     Matrix transpose() const;
 
+    /**
+     * A friend function for multiplication operator
+     * @param s a scalar
+     * @param B the input matrix
+     * @return B scaled by s
+     */
     friend Matrix operator*(double s, const Matrix& B);
 
+    /**
+     * A friend function for stream
+     * @param output the output stream, e.g. std::cout
+     * @param B the matrix
+     * @return printing of matrix B
+     */
     friend std::ostream& operator<<(std::ostream& output, const Matrix& B);
 
+    /**
+     * Row exchange (currently used in Gaussian elimination)
+     * @param i index for one row in the matrix
+     * @param j index for the another row in the matrix
+     */
     void row_exchange(int i, int j);
 
+    /**
+     * Gaussian elimination for solving the linear system: Ax = b
+     * @param A a matrix
+     * @param b a vector
+     * @return the solution x (a vector) for Ax = b
+     */
     friend std::vector<double> gauss_solve(const Matrix& A, const std::vector<double> &b);
 
     /**
-     *
-     * @param A
-     * @param b
-     * @param s
-     * @return
+     * Solve least squares Ax = b, where A is non-square
+     * @param A a non-square matrix
+     * @param b a vector
+     * @param s a non-negative scalar to be added on the diagonal of A.T * A
+     * @return the solution of the normal equation, i.e. x = (A.T * A + sI)^(-1) A.T * b
      */
     friend std::vector<double> least_squares(const Matrix& A, const std::vector<double> &b, double s);
 };
