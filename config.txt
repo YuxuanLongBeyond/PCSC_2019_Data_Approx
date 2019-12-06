@@ -1,0 +1,7 @@
+use_defined_function: 1
+select_num: 2
+x_min: 0
+x_max: 1
+num_input_points: 1000
+distribution: 1
+method: Polynomial
