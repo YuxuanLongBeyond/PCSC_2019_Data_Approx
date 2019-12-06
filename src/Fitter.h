@@ -17,22 +17,7 @@ private:
     std::vector<double> data_y;
     int N;
 public:
-<<<<<<< HEAD
     Fitter(std::vector<double>& x, std::vector<double>& y);
-=======
-    /**
-     *
-     * @param x rehrth
-     * @param y erh
-     */
-    Fitter(std::vector<double>& x, std::vector<double>& y);
-    /**
-     *
-     * @param degree
-     * @param lambda
-     * @return
-     */
->>>>>>> b729361cdd0487f98a2fb378a165525e442e7a18
     std::vector<double> polyfit(int degree, double lambda) const;
     std::vector<double> polyval(std::vector<double>& w, std::vector<double>& x_test) const;
 

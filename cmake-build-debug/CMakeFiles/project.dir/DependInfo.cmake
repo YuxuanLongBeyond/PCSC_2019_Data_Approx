@@ -4,14 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Config.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/Config.cpp.o"
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/Fitter.cpp.o"
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/Inputdata.cpp.o"
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/Matrix.cpp.o"
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/gnuplot_i.cpp.o"
-  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/main.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/Test.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/Test.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/main.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/src/Fitter.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/src/Matrix.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/Config.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/DataIO.cpp.o"
+  "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.cpp" "/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/gnuplot_i.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

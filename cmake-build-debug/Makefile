@@ -39,19 +39,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake
 
 # The command to remove a file.
-RM = /home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake -E remove -f
+RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx
+CMAKE_SOURCE_DIR = /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_App
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/yiting/Downloads/clion-2019.2.3/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,140 +123,32 @@ project/fast:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-Config.o: Config.cpp.o
+Test.o: Test.cpp.o
 
-.PHONY : Config.o
-
-# target to build an object file
-Config.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.o
-.PHONY : Config.cpp.o
-
-Config.i: Config.cpp.i
-
-.PHONY : Config.i
-
-# target to preprocess a source file
-Config.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.i
-.PHONY : Config.cpp.i
-
-Config.s: Config.cpp.s
-
-.PHONY : Config.s
-
-# target to generate assembly for a file
-Config.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.s
-.PHONY : Config.cpp.s
-
-Fitter.o: Fitter.cpp.o
-
-.PHONY : Fitter.o
+.PHONY : Test.o
 
 # target to build an object file
-Fitter.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.o
-.PHONY : Fitter.cpp.o
+Test.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Test.cpp.o
+.PHONY : Test.cpp.o
 
-Fitter.i: Fitter.cpp.i
+Test.i: Test.cpp.i
 
-.PHONY : Fitter.i
-
-# target to preprocess a source file
-Fitter.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.i
-.PHONY : Fitter.cpp.i
-
-Fitter.s: Fitter.cpp.s
-
-.PHONY : Fitter.s
-
-# target to generate assembly for a file
-Fitter.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Fitter.cpp.s
-.PHONY : Fitter.cpp.s
-
-Inputdata.o: Inputdata.cpp.o
-
-.PHONY : Inputdata.o
-
-# target to build an object file
-Inputdata.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Inputdata.cpp.o
-.PHONY : Inputdata.cpp.o
-
-Inputdata.i: Inputdata.cpp.i
-
-.PHONY : Inputdata.i
+.PHONY : Test.i
 
 # target to preprocess a source file
-Inputdata.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Inputdata.cpp.i
-.PHONY : Inputdata.cpp.i
+Test.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Test.cpp.i
+.PHONY : Test.cpp.i
 
-Inputdata.s: Inputdata.cpp.s
+Test.s: Test.cpp.s
 
-.PHONY : Inputdata.s
-
-# target to generate assembly for a file
-Inputdata.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Inputdata.cpp.s
-.PHONY : Inputdata.cpp.s
-
-Matrix.o: Matrix.cpp.o
-
-.PHONY : Matrix.o
-
-# target to build an object file
-Matrix.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Matrix.cpp.o
-.PHONY : Matrix.cpp.o
-
-Matrix.i: Matrix.cpp.i
-
-.PHONY : Matrix.i
-
-# target to preprocess a source file
-Matrix.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Matrix.cpp.i
-.PHONY : Matrix.cpp.i
-
-Matrix.s: Matrix.cpp.s
-
-.PHONY : Matrix.s
+.PHONY : Test.s
 
 # target to generate assembly for a file
-Matrix.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Matrix.cpp.s
-.PHONY : Matrix.cpp.s
-
-gnuplot_i.o: gnuplot_i.cpp.o
-
-.PHONY : gnuplot_i.o
-
-# target to build an object file
-gnuplot_i.cpp.o:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.o
-.PHONY : gnuplot_i.cpp.o
-
-gnuplot_i.i: gnuplot_i.cpp.i
-
-.PHONY : gnuplot_i.i
-
-# target to preprocess a source file
-gnuplot_i.cpp.i:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.i
-.PHONY : gnuplot_i.cpp.i
-
-gnuplot_i.s: gnuplot_i.cpp.s
-
-.PHONY : gnuplot_i.s
-
-# target to generate assembly for a file
-gnuplot_i.cpp.s:
-	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/gnuplot_i.cpp.s
-.PHONY : gnuplot_i.cpp.s
+Test.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Test.cpp.s
+.PHONY : Test.cpp.s
 
 main.o: main.cpp.o
 
@@ -285,6 +177,141 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Fitter.o: src/Fitter.cpp.o
+
+.PHONY : src/Fitter.o
+
+# target to build an object file
+src/Fitter.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Fitter.cpp.o
+.PHONY : src/Fitter.cpp.o
+
+src/Fitter.i: src/Fitter.cpp.i
+
+.PHONY : src/Fitter.i
+
+# target to preprocess a source file
+src/Fitter.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Fitter.cpp.i
+.PHONY : src/Fitter.cpp.i
+
+src/Fitter.s: src/Fitter.cpp.s
+
+.PHONY : src/Fitter.s
+
+# target to generate assembly for a file
+src/Fitter.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Fitter.cpp.s
+.PHONY : src/Fitter.cpp.s
+
+src/Matrix.o: src/Matrix.cpp.o
+
+.PHONY : src/Matrix.o
+
+# target to build an object file
+src/Matrix.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Matrix.cpp.o
+.PHONY : src/Matrix.cpp.o
+
+src/Matrix.i: src/Matrix.cpp.i
+
+.PHONY : src/Matrix.i
+
+# target to preprocess a source file
+src/Matrix.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Matrix.cpp.i
+.PHONY : src/Matrix.cpp.i
+
+src/Matrix.s: src/Matrix.cpp.s
+
+.PHONY : src/Matrix.s
+
+# target to generate assembly for a file
+src/Matrix.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/src/Matrix.cpp.s
+.PHONY : src/Matrix.cpp.s
+
+test/Config.o: test/Config.cpp.o
+
+.PHONY : test/Config.o
+
+# target to build an object file
+test/Config.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Config.cpp.o
+.PHONY : test/Config.cpp.o
+
+test/Config.i: test/Config.cpp.i
+
+.PHONY : test/Config.i
+
+# target to preprocess a source file
+test/Config.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Config.cpp.i
+.PHONY : test/Config.cpp.i
+
+test/Config.s: test/Config.cpp.s
+
+.PHONY : test/Config.s
+
+# target to generate assembly for a file
+test/Config.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Config.cpp.s
+.PHONY : test/Config.cpp.s
+
+test/DataIO.o: test/DataIO.cpp.o
+
+.PHONY : test/DataIO.o
+
+# target to build an object file
+test/DataIO.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/DataIO.cpp.o
+.PHONY : test/DataIO.cpp.o
+
+test/DataIO.i: test/DataIO.cpp.i
+
+.PHONY : test/DataIO.i
+
+# target to preprocess a source file
+test/DataIO.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/DataIO.cpp.i
+.PHONY : test/DataIO.cpp.i
+
+test/DataIO.s: test/DataIO.cpp.s
+
+.PHONY : test/DataIO.s
+
+# target to generate assembly for a file
+test/DataIO.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/DataIO.cpp.s
+.PHONY : test/DataIO.cpp.s
+
+test/gnuplot_i.o: test/gnuplot_i.cpp.o
+
+.PHONY : test/gnuplot_i.o
+
+# target to build an object file
+test/gnuplot_i.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/gnuplot_i.cpp.o
+.PHONY : test/gnuplot_i.cpp.o
+
+test/gnuplot_i.i: test/gnuplot_i.cpp.i
+
+.PHONY : test/gnuplot_i.i
+
+# target to preprocess a source file
+test/gnuplot_i.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/gnuplot_i.cpp.i
+.PHONY : test/gnuplot_i.cpp.i
+
+test/gnuplot_i.s: test/gnuplot_i.cpp.s
+
+.PHONY : test/gnuplot_i.s
+
+# target to generate assembly for a file
+test/gnuplot_i.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/gnuplot_i.cpp.s
+.PHONY : test/gnuplot_i.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -292,26 +319,29 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... project"
 	@echo "... edit_cache"
-	@echo "... Config.o"
-	@echo "... Config.i"
-	@echo "... Config.s"
-	@echo "... Fitter.o"
-	@echo "... Fitter.i"
-	@echo "... Fitter.s"
-	@echo "... Inputdata.o"
-	@echo "... Inputdata.i"
-	@echo "... Inputdata.s"
-	@echo "... Matrix.o"
-	@echo "... Matrix.i"
-	@echo "... Matrix.s"
-	@echo "... gnuplot_i.o"
-	@echo "... gnuplot_i.i"
-	@echo "... gnuplot_i.s"
+	@echo "... project"
+	@echo "... Test.o"
+	@echo "... Test.i"
+	@echo "... Test.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Fitter.o"
+	@echo "... src/Fitter.i"
+	@echo "... src/Fitter.s"
+	@echo "... src/Matrix.o"
+	@echo "... src/Matrix.i"
+	@echo "... src/Matrix.s"
+	@echo "... test/Config.o"
+	@echo "... test/Config.i"
+	@echo "... test/Config.s"
+	@echo "... test/DataIO.o"
+	@echo "... test/DataIO.i"
+	@echo "... test/DataIO.s"
+	@echo "... test/gnuplot_i.o"
+	@echo "... test/gnuplot_i.i"
+	@echo "... test/gnuplot_i.s"
 .PHONY : help
 
 

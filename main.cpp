@@ -1,46 +1,18 @@
 #include <iostream>
 #include <fstream>
-#include "Config.h"
+#include "test/Config.h"
 #include <cmath>
 #include <stdexcept>
-#include "Matrix.h"
+#include "src/Matrix.h"
 #include <vector>
 #include <map>
 #include <cstdio>
-#include "Fitter.h"
-#include "Inputdata.h"
+#include "src/Fitter.h"
+#include "test/DataIO.h"
 #include <cassert>
 
 
 int main(int argc, char* argv[]) {
-    Matrix A(3, 3);
-    A[0][0] = 0;
-    A[0][1] = 1;
-    A[0][2] = 2;
-    A[1][0] = 5;
-    A[1][1] = 0;
-    A[1][2] = 3;
-    A[2][0] = 2;
-    A[2][1] = 3;
-    A[2][2] = 1;
-    std::vector<double> b(3);
-    b[0] = 3; b[1] = 8; b[2] = 6;
-    std::vector<double> x = gauss_solve(A, b);
-    Matrix P1;
-    P1[0][0] = 2;
-    Matrix P2;
-    P2[0][0] = 2;
-    Matrix P = P1 * P2;
-    double s = 2.0;
-    Matrix B(3, 2);
-    B[0][0] = 0;
-    B[0][1] = 1;
-    B[1][0] = 5;
-    B[1][1] = 0;
-    B[2][0] = 2;
-    B[2][1] = 3;
-    std::vector<double> y = least_squares(B, b, 0.0);
-
 
     int choice_f;
     int choice_node;
@@ -71,38 +43,34 @@ int main(int argc, char* argv[]) {
     std::vector<double> x_gen(N_gen);
     std::vector<double> y_gen(N_gen);
 
-    Inputdata fromfunction;
+    DataIO data_handler;
     if (choice_node == 1){
-        x_gen = fromfunction.gen_uni(N_gen, x_min, x_max);
+        x_gen = data_handler.gen_uni(N_gen, x_min, x_max);
     }
     else{
-        x_gen = fromfunction.gen_cgl(N_gen, x_min, x_max);
+        x_gen = data_handler.gen_cgl(N_gen, x_min, x_max);
     }
 
     for (int i = 0; i < N_gen; i++) {
         if(choice_f == 1){
-            y_gen[i] = cos(3 * x_gen[i] * M_PI);
+            y_gen[i] = cos(3.0 * x_gen[i] * M_PI);
         }
         else{
-            y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
+            y_gen[i] = 1.0 / (1.0 + x_gen[i] * x_gen[i]);
         }
 
     }
-    std::ofstream generate_data("data.dat");
-    assert(generate_data.is_open());
-    for (int i = 0 ; i < N_gen; i++){
-        generate_data << x_gen[i] << " " << y_gen[i] << "\n";
-    }
-    generate_data.close();
-    std::cout << "Data is generated." << std::endl;
 
+    std::string file_name = "data.dat";
 
+    DataIO::data_writer(file_name, x_gen, y_gen);
 
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
-    Inputdata test;
-    test.Readtestdata();
+    DataIO test;
+
+    test.test_data_reader(file_name);
     X = test.get_data_x();
     Y = test.get_data_y();
     std::cout << std::endl;
@@ -113,10 +81,7 @@ int main(int argc, char* argv[]) {
     std::vector<double> w;
     if (approx_method == "polynomial"){
         w = approx.polyfit(poly_degree, poly_lambda);
-        for (int i_w = 0; i_w < poly_degree; i_w++){
-            std::cout << w[i_w] << " ";
-        }
-        std::cout << std::endl;
+        DataIO::print_vector(w);
         Y_test = approx.polyval(w, X_test);
     }
     if (approx_method == "interpolation"){
@@ -127,21 +92,16 @@ int main(int argc, char* argv[]) {
     }
     if (approx_method == "dct"){
         w = approx.dct_fit();
-        std::cout << w[0] << w[1] << w[2] << std::endl;
+        DataIO::print_vector(w);
         Y_test = approx.dct_val(w, X_test);
     }
 
+    DataIO::print_vector(Y_test);
 
-    for (int i = 0; i < N_test; i ++) {
-        std::cout << Y_test[i] << ' ';
-    }
 
-    std::ofstream write_output("Output.dat");
-    assert(write_output.is_open());
-    for (int i = 0; i < N_test; i++){
-        write_output << X_test[i] << " " << Y_test[i] << "\n";
-    }
-    write_output.close();
+    std::string out_file = "Output.dat";
+    DataIO::data_writer(out_file, X_test, Y_test);
+
 
 //    Gnuplot gp = Gnuplot("lines");
 //    gp.set_style("points");

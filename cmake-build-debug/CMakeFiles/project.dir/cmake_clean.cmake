@@ -1,10 +1,11 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project.dir/Config.cpp.o"
-  "CMakeFiles/project.dir/Fitter.cpp.o"
-  "CMakeFiles/project.dir/Inputdata.cpp.o"
-  "CMakeFiles/project.dir/Matrix.cpp.o"
-  "CMakeFiles/project.dir/gnuplot_i.cpp.o"
+  "CMakeFiles/project.dir/Test.cpp.o"
   "CMakeFiles/project.dir/main.cpp.o"
+  "CMakeFiles/project.dir/src/Fitter.cpp.o"
+  "CMakeFiles/project.dir/src/Matrix.cpp.o"
+  "CMakeFiles/project.dir/test/Config.cpp.o"
+  "CMakeFiles/project.dir/test/DataIO.cpp.o"
+  "CMakeFiles/project.dir/test/gnuplot_i.cpp.o"
   "project"
   "project.pdb"
 )
