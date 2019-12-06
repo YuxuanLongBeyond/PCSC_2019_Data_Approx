@@ -6,9 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.cpp
-gnuplot_i.hpp
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.h
+iostream
+-
+vector
+-
+Matrix.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.h
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.h
+iostream
+-
+fstream
+-
+vector
+-
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.h
+iostream
+-
+vector
+-
 
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp
 stdarg.h
@@ -35,4 +53,30 @@ vector
 -
 stdexcept
 -
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp
+iostream
+-
+fstream
+-
+cmath
+-
+stdexcept
+-
+Matrix.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Matrix.h
+vector
+-
+map
+-
+cstdio
+-
+Fitter.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Fitter.h
+Inputdata.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.h
+cassert
+-
+gnuplot_i.hpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp
 

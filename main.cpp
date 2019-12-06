@@ -62,45 +62,56 @@ int main(int argc, char* argv[]) {
 
 
 
-    //generate data
-    int N_gen;
-    double x_min;
-    double x_max;
-    double x_step;
-    int choice;
-    std::cout << "Please select your test function (1/2):" << std::endl;
-    std::cout << "1. cos(3 * Pi * x)" << std::endl;
-    std::cout << "2. 1 / (1 + x ^ 2)" << std::endl;
-    std::cin >> choice;
-    assert(choice == 1 || choice == 2);
-    std::cout << "Please input the number of data points to generate, which is must be an integer larger than 1:";
-    std::cin >> N_gen;
-    assert(N_gen >= 2);
-    std::cout << "Please input the range of x:" << std::endl;
-    std::cout << "The minimum of x is:";
-    std::cin >> x_min;
-    std::cout << "The maximum of x is:";
-    std::cin >> x_max;
-    x_step = (x_max - x_min) / (N_gen - 1);
-    std::vector<double> x_gen(N_gen);
-    std::vector<double> y_gen(N_gen);
-    for (int i = 0; i < N_gen; i++) {
-        x_gen[i] = x_min + (double) i * x_step;
-        if(choice == 1){
-            y_gen[i] = cos(3 * x_gen[i] * M_PI);
-        }
-        else{
-            y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
-        }
+    //input data
+    int choice_input;
+    std::cout << "Welcome to Yuxuan Long and Yiting Zhang data approximation tool." << std::endl;
+    std::cout << "You have the choice between using your own input data or to generate data now by certain functions (1/2):" << std::endl;
+    std::cout << "1. Use your own input data" << std::endl;
+    std::cout << "2. Generate data by certain functions" << std::endl;
+    std::cin >> choice_input;
+    assert(choice_input == 1||choice_input == 2);
+    if (choice_input == 2){
+        int N_gen;
+        double x_min;
+        double x_max;
+        double x_step;
+        int choice_f;
+        std::cout << "Please select your test function (1/2):" << std::endl;
+        std::cout << "1. cos(3 * Pi * x)" << std::endl;
+        std::cout << "2. 1 / (1 + x ^ 2)" << std::endl;
+        std::cin >> choice_f;
+        assert(choice_f == 1 || choice_f == 2);
+        std::cout << "Please input the number of data points to generate, which is must be an integer larger than 1:";
+        std::cin >> N_gen;
+        assert(N_gen >= 2);
+        std::cout << "Please input the range of x:" << std::endl;
+        std::cout << "The minimum of x is:";
+        std::cin >> x_min;
+        std::cout << "The maximum of x is:";
+        std::cin >> x_max;
+        x_step = (x_max - x_min) / (N_gen - 1);
+        std::vector<double> x_gen(N_gen);
+        std::vector<double> y_gen(N_gen);
+        for (int i = 0; i < N_gen; i++) {
+            x_gen[i] = x_min + (double) i * x_step;
+            if(choice_f == 1){
+                y_gen[i] = cos(3 * x_gen[i] * M_PI);
+            }
+            else{
+                y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
+            }
 
+        }
+        std::ofstream generate_data("data.dat");
+        assert(generate_data.is_open());
+        for (int i = 0 ; i < N_gen; i++){
+            generate_data << x_gen[i] << " " << y_gen[i] << "\n";
+        }
+        generate_data.close();
+        std::cout << "Data is generated." << std::endl;
     }
-    std::ofstream generate_data("data.dat");
-    assert(generate_data.is_open());
-    for (int i = 0 ; i < N_gen; i++){
-        generate_data << x_gen[i] << " " << y_gen[i] << "\n";
-    }
-    generate_data.close();
-    std::cout << "Data is generated." << std::endl;
+    else;
+
 
     // brief test
     int N_test;
@@ -113,8 +124,18 @@ int main(int argc, char* argv[]) {
     Inputdata train;
     X = train.get_data_x();
     Y = train.get_data_y();
-    X_test = train.test_cgl(N_test);
-
+    int choice_node;
+    std::cout << "Please select the type of distribution for test nodes: " << std::endl;
+    std::cout << "1. Uniform distribution" << std::endl;
+    std::cout << "2. Chebyshev-Gauss-Lobatto nodes" << std::endl;
+    std::cin >> choice_node;
+    assert(choice_node == 1||choice_node == 2);
+    if (choice_node ==1){
+        X_test = train.test_uni(N_test);
+    }
+    else{
+        X_test = train.test_cgl(N_test);
+    }
 
 
     Fitter approx(X, Y);
