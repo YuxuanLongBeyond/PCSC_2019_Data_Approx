@@ -9,7 +9,6 @@
 #include "Fitter.h"
 #include "Inputdata.h"
 #include <cassert>
-#include "gnuplot_i.hpp"
 
 int main(int argc, char* argv[]) {
     Matrix A(3, 3);
@@ -74,9 +73,8 @@ int main(int argc, char* argv[]) {
         int N_gen;
         double x_min;
         double x_max;
-        double x_step;
         int choice_f;
-        std::cout << "Please select your test function (1/2):" << std::endl;
+        std::cout << "Please select your function to generate data (1/2):" << std::endl;
         std::cout << "1. cos(3 * Pi * x)" << std::endl;
         std::cout << "2. 1 / (1 + x ^ 2)" << std::endl;
         std::cin >> choice_f;
@@ -89,11 +87,23 @@ int main(int argc, char* argv[]) {
         std::cin >> x_min;
         std::cout << "The maximum of x is:";
         std::cin >> x_max;
-        x_step = (x_max - x_min) / (N_gen - 1);
         std::vector<double> x_gen(N_gen);
         std::vector<double> y_gen(N_gen);
+        int choice_node;
+        std::cout << "Please select the type of distribution for test nodes: " << std::endl;
+        std::cout << "1. Uniform distribution" << std::endl;
+        std::cout << "2. Chebyshev-Gauss-Lobatto nodes" << std::endl;
+        std::cin >> choice_node;
+        assert(choice_node == 1||choice_node == 2);
+        Inputdata fromfunction;
+        if (choice_node ==1){
+            x_gen = fromfunction.gen_uni(N_gen, x_min, x_max);
+        }
+        else{
+            x_gen = fromfunction.gen_cgl(N_gen, x_min, x_max);
+        }
+
         for (int i = 0; i < N_gen; i++) {
-            x_gen[i] = x_min + (double) i * x_step;
             if(choice_f == 1){
                 y_gen[i] = cos(3 * x_gen[i] * M_PI);
             }
@@ -121,22 +131,11 @@ int main(int argc, char* argv[]) {
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
-    Inputdata train;
-    X = train.get_data_x();
-    Y = train.get_data_y();
-    int choice_node;
-    std::cout << "Please select the type of distribution for test nodes: " << std::endl;
-    std::cout << "1. Uniform distribution" << std::endl;
-    std::cout << "2. Chebyshev-Gauss-Lobatto nodes" << std::endl;
-    std::cin >> choice_node;
-    assert(choice_node == 1||choice_node == 2);
-    if (choice_node ==1){
-        X_test = train.test_uni(N_test);
-    }
-    else{
-        X_test = train.test_cgl(N_test);
-    }
-
+    Inputdata test;
+    test.Readtestdata();
+    X = test.get_data_x();
+    Y = test.get_data_y();
+    X_test = test.gen_x_test(N_test);
 
     Fitter approx(X, Y);
     std::vector<double> Y_test;
@@ -183,9 +182,9 @@ int main(int argc, char* argv[]) {
     }
     write_output.close();
 
-    Gnuplot gp = Gnuplot("lines");
-    gp.set_style("points");
-    gp.plot_xy(X_test, Y_test, "Approximation");
+//    Gnuplot gp = Gnuplot("lines");
+//    gp.set_style("points");
+//    gp.plot_xy(X_test, Y_test, "Approximation");
 
     return 0;
 

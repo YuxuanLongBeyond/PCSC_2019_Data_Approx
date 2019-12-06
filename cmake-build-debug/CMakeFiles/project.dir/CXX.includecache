@@ -28,32 +28,6 @@ iostream
 vector
 -
 
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp
-stdarg.h
--
-unistd.h
--
-cstdlib
--
-cstdio
--
-cstring
--
-string
--
-iostream
--
-fstream
--
-sstream
--
-list
--
-vector
--
-stdexcept
--
-
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp
 iostream
 -
@@ -77,6 +51,4 @@ Inputdata.h
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/Inputdata.h
 cassert
 -
-gnuplot_i.hpp
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/gnuplot_i.hpp
 
