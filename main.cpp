@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "Config.h"
 #include <cmath>
 #include <stdexcept>
 #include "Matrix.h"
@@ -9,6 +10,7 @@
 #include "Fitter.h"
 #include "Inputdata.h"
 #include <cassert>
+
 
 int main(int argc, char* argv[]) {
     Matrix A(3, 3);
@@ -21,31 +23,15 @@ int main(int argc, char* argv[]) {
     A[2][0] = 2;
     A[2][1] = 3;
     A[2][2] = 1;
-
     std::vector<double> b(3);
     b[0] = 3; b[1] = 8; b[2] = 6;
     std::vector<double> x = gauss_solve(A, b);
-
-
-//    std::cout << x[0] << std::endl;
-//    std::cout << x[1] << std::endl;
-//    std::cout << x[2] << std::endl;
-//
-//    std::cout << b[0] << std::endl;
-//    std::cout << b[1] << std::endl;
-//    std::cout << b[2] << std::endl;
-
-
     Matrix P1;
     P1[0][0] = 2;
     Matrix P2;
     P2[0][0] = 2;
     Matrix P = P1 * P2;
-//    std::cout << P << std::endl;
     double s = 2.0;
-
-//    std::cout << A.transpose().diagonal_add(s) << std::endl;
-
     Matrix B(3, 2);
     B[0][0] = 0;
     B[0][1] = 1;
@@ -53,81 +39,62 @@ int main(int argc, char* argv[]) {
     B[1][1] = 0;
     B[2][0] = 2;
     B[2][1] = 3;
-//    std::cout << B;
-//
     std::vector<double> y = least_squares(B, b, 0.0);
-//    std::cout << y[0] << std::endl;
-//    std::cout << y[1] << std::endl;
+
+
+    int choice_f;
+    int choice_node;
+    int N_gen;
+    int N_test;
+    double x_min;
+    double x_max;
+    std::string approx_method;
+    const char ConfigFile[]= "config.txt";// read configuration file
+    Config configSettings(ConfigFile);
+    choice_f = configSettings.Read("function_type", 1);
+    N_gen = configSettings.Read("num_input_points", 20);
+    N_test = configSettings.Read("num_test_points", 1000);
+    x_min = configSettings.Read("x_input_min", 0);
+    x_max = configSettings.Read("x_input_max", 1);
+    choice_node = configSettings.Read("node_type", 1);
+    approx_method = configSettings.Read("approximation_method", approx_method);
 
 
 
-    //input data
-    int choice_input;
-    std::cout << "Welcome to Yuxuan Long and Yiting Zhang data approximation tool." << std::endl;
-    std::cout << "You have the choice between using your own input data or to generate data now by certain functions (1/2):" << std::endl;
-    std::cout << "1. Use your own input data" << std::endl;
-    std::cout << "2. Generate data by certain functions" << std::endl;
-    std::cin >> choice_input;
-    assert(choice_input == 1||choice_input == 2);
-    if (choice_input == 2){
-        int N_gen;
-        double x_min;
-        double x_max;
-        int choice_f;
-        std::cout << "Please select your function to generate data (1/2):" << std::endl;
-        std::cout << "1. cos(3 * Pi * x)" << std::endl;
-        std::cout << "2. 1 / (1 + x ^ 2)" << std::endl;
-        std::cin >> choice_f;
-        assert(choice_f == 1 || choice_f == 2);
-        std::cout << "Please input the number of data points to generate, which is must be an integer larger than 1:";
-        std::cin >> N_gen;
-        assert(N_gen >= 2);
-        std::cout << "Please input the range of x:" << std::endl;
-        std::cout << "The minimum of x is:";
-        std::cin >> x_min;
-        std::cout << "The maximum of x is:";
-        std::cin >> x_max;
-        std::vector<double> x_gen(N_gen);
-        std::vector<double> y_gen(N_gen);
-        int choice_node;
-        std::cout << "Please select the type of distribution for test nodes: " << std::endl;
-        std::cout << "1. Uniform distribution" << std::endl;
-        std::cout << "2. Chebyshev-Gauss-Lobatto nodes" << std::endl;
-        std::cin >> choice_node;
-        assert(choice_node == 1||choice_node == 2);
-        Inputdata fromfunction;
-        if (choice_node ==1){
-            x_gen = fromfunction.gen_uni(N_gen, x_min, x_max);
+    assert(choice_f == 1 || choice_f == 2);
+    assert(N_gen >= 2);
+    assert(choice_node == 1||choice_node == 2);
+    assert(N_test >= 2);
+
+    std::vector<double> x_gen(N_gen);
+    std::vector<double> y_gen(N_gen);
+
+    Inputdata fromfunction;
+    if (choice_node == 1){
+        x_gen = fromfunction.gen_uni(N_gen, x_min, x_max);
+    }
+    else{
+        x_gen = fromfunction.gen_cgl(N_gen, x_min, x_max);
+    }
+
+    for (int i = 0; i < N_gen; i++) {
+        if(choice_f == 1){
+            y_gen[i] = cos(3 * x_gen[i] * M_PI);
         }
         else{
-            x_gen = fromfunction.gen_cgl(N_gen, x_min, x_max);
+            y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
         }
 
-        for (int i = 0; i < N_gen; i++) {
-            if(choice_f == 1){
-                y_gen[i] = cos(3 * x_gen[i] * M_PI);
-            }
-            else{
-                y_gen[i] = 1 / (1 + x_gen[i] * x_gen[i]);
-            }
-
-        }
-        std::ofstream generate_data("data.dat");
-        assert(generate_data.is_open());
-        for (int i = 0 ; i < N_gen; i++){
-            generate_data << x_gen[i] << " " << y_gen[i] << "\n";
-        }
-        generate_data.close();
-        std::cout << "Data is generated." << std::endl;
     }
-    else;
+    std::ofstream generate_data("data.dat");
+    assert(generate_data.is_open());
+    for (int i = 0 ; i < N_gen; i++){
+        generate_data << x_gen[i] << " " << y_gen[i] << "\n";
+    }
+    generate_data.close();
+    std::cout << "Data is generated." << std::endl;
 
 
-    // brief test
-    int N_test;
-    std::cout << "Please input the number of test data points, which is must be an integer larger than 1:";
-    std::cin >> N_test;
-    assert(N_test >= 2);
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
@@ -140,11 +107,7 @@ int main(int argc, char* argv[]) {
     Fitter approx(X, Y);
     std::vector<double> Y_test;
     std::vector<double> w;
-    int choice_m;
-    std::cout << "Please select the approximation method (1/2/3/4):" << std::endl;
-    std::cout << "1. Polynomial\n2. Interpolation\n3. Spline\n4. DCT\n";
-    std::cin >> choice_m;
-    if (choice_m == 1){
+    if (approx_method == "polynomial"){
         int degree;
         double lambda_;
         std::cout << "Degree: ";
@@ -158,13 +121,13 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl;
         Y_test = approx.polyval(w, X_test);
     }
-    if (choice_m == 2){
+    if (approx_method == "interpolation"){
         Y_test = approx.interp1(X_test);
     }
-    if (choice_m == 3){
+    if (approx_method == "spline"){
         Y_test = approx.spline(X_test);
     }
-    if (choice_m == 4){
+    if (approx_method == "dct"){
         w = approx.dct_fit();
         std::cout << w[0] << w[1] << w[2] << std::endl;
         Y_test = approx.dct_val(w, X_test);

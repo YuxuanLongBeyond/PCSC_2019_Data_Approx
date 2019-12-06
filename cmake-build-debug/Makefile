@@ -123,6 +123,33 @@ project/fast:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
+Config.o: Config.cpp.o
+
+.PHONY : Config.o
+
+# target to build an object file
+Config.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.o
+.PHONY : Config.cpp.o
+
+Config.i: Config.cpp.i
+
+.PHONY : Config.i
+
+# target to preprocess a source file
+Config.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.i
+.PHONY : Config.cpp.i
+
+Config.s: Config.cpp.s
+
+.PHONY : Config.s
+
+# target to generate assembly for a file
+Config.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Config.cpp.s
+.PHONY : Config.cpp.s
+
 Fitter.o: Fitter.cpp.o
 
 .PHONY : Fitter.o
@@ -267,6 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... project"
 	@echo "... edit_cache"
+	@echo "... Config.o"
+	@echo "... Config.i"
+	@echo "... Config.s"
 	@echo "... Fitter.o"
 	@echo "... Fitter.i"
 	@echo "... Fitter.s"
