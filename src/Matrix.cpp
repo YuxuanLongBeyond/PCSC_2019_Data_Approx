@@ -171,7 +171,7 @@ std::vector<double> Matrix::operator*(const std::vector<double> &x) const {
 }
 
 
-int is_zero(double a, double threshold = 1e-15) {
+int Matrix::is_zero(double a, double threshold) {
     if (std::abs(a) < threshold) {
         return 1;
     }
@@ -216,9 +216,9 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
     // ensure the first row has pivot
     int flag = 1;
     int row = 0;
-    if (is_zero(B[0][0])) {
+    if (Matrix::is_zero(B[0][0])) {
         for (int i = 1; i < n; i ++) {
-            if (! is_zero(B[i][0])) {
+            if (! Matrix::is_zero(B[i][0])) {
                 flag = 0;
                 row = i;
                 break;
@@ -238,8 +238,8 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
     for (int i = 1; i < n; i ++) {
         for (int j = 0; j < i; j ++) {
 
-            if (is_zero(B[j][j])) {
-                if (! is_zero(B[i][j])) {
+            if (Matrix::is_zero(B[j][j])) {
+                if (! Matrix::is_zero(B[i][j])) {
                     // pivoting
                     // exchange row i and row j
                     B.row_exchange(i, j);
@@ -249,7 +249,7 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
                 }
             }
             else {
-                if (! is_zero(B[i][j])) {
+                if (! Matrix::is_zero(B[i][j])) {
                     // row elimination
                     mul = B[i][j] / B[j][j];
                     B[i][j] = 0;
@@ -265,7 +265,7 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
     // back substitution
     for (int i = n - 1; i >= 0; i --) {
         // check if the diagonal has zeros
-        if (is_zero(B[i][i])) {
+        if (Matrix::is_zero(B[i][i])) {
             throw std::invalid_argument( "Singular matrix encountered!" );
         }
         for (int j = n - 1; j > i; j --) {

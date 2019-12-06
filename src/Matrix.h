@@ -10,10 +10,30 @@
 
 class Matrix {
 private:
+    /**
+     * Number of rows
+     */
     int size0;
+
+    /**
+     * Number of columns
+     */
     int size1;
+
+    /**
+     * 2D array for storing the elements in the matrix
+     */
     double** A;
+
+    /**
+     * Dynamically allocated memory for creating a 2D array (used in constructor)
+     * @return an empty 2D array with memory reserved
+     */
     double** define();
+
+    /**
+     * Erase the allocated memory for the matrix (used in destructor)
+     */
     void del();
 public:
 
@@ -134,10 +154,19 @@ public:
      * @param i index for one row in the matrix
      * @param j index for the another row in the matrix
      */
+
+    /**
+     * Judge if the input scalar is zero or not (this function is heavily used in Gaussian elimination)
+     * @param a the input scalar
+     * @param threshold a small positive number for the threshold
+     * @return if the absolute value of the input is smaller than the threshold, 1 is returned; otherwise, 0.
+     */
+    static int is_zero(double a, double threshold = 1e-15);
+
     void row_exchange(int i, int j);
 
     /**
-     * Gaussian elimination for solving the linear system: Ax = b
+     * Gauss elimination and back substitution for solving the linear system: Ax = b, including pivoting
      * @param A a matrix
      * @param b a vector
      * @return the solution x (a vector) for Ax = b
@@ -145,7 +174,7 @@ public:
     friend std::vector<double> gauss_solve(const Matrix& A, const std::vector<double> &b);
 
     /**
-     * Solve least squares Ax = b, where A is non-square
+     * Solve least squares Ax = b, where A is non-square. In fact, we solve the normal equation
      * @param A a non-square matrix
      * @param b a vector
      * @param s a non-negative scalar to be added on the diagonal of A.T * A
