@@ -8,6 +8,13 @@
 #include <iostream>
 #include <vector>
 
+/**
+ * This class builds mainly for matrix operations, which contain:
+ * 1. Construction of matrix based on 2D array in C++.
+ * 2. Basic matrix operations, like assignment, addition, subtraction and multiplication.
+ * 3. Auxiliary matrix operations, like transpose, diagonal element addition and row exchange.
+ * 4. Advanced matrix operations, like Gaussian elimination for solving linear system and least squares.
+ */
 class Matrix {
 private:
     /**
