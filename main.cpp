@@ -12,6 +12,7 @@
 #include <cassert>
 
 
+
 int main(int argc, char* argv[]) {
 
     int choice_f;
@@ -20,6 +21,8 @@ int main(int argc, char* argv[]) {
     int N_test;
     double x_min;
     double x_max;
+    double x_test_min;
+    double x_test_max;
     std::string approx_method;
     int poly_degree;
     double poly_lambda;
@@ -30,6 +33,8 @@ int main(int argc, char* argv[]) {
     N_test = configSettings.Read("num_test_points", 1000);
     x_min = configSettings.Read("x_input_min", 0);
     x_max = configSettings.Read("x_input_max", 1);
+    x_test_min = configSettings.Read("x_test_min", 0);
+    x_test_max = configSettings.Read("x_test_max", 1);
     choice_node = configSettings.Read("node_type", 1);
     approx_method = configSettings.Read("approximation_method", approx_method);
     poly_degree = configSettings.Read("polynomial_degree", 2);
@@ -58,7 +63,6 @@ int main(int argc, char* argv[]) {
         else{
             y_gen[i] = 1.0 / (1.0 + x_gen[i] * x_gen[i]);
         }
-
     }
 
     std::string file_name = "data.dat";
@@ -74,7 +78,7 @@ int main(int argc, char* argv[]) {
     X = test.get_data_x();
     Y = test.get_data_y();
     std::cout << std::endl;
-    X_test = test.gen_x_test(N_test);
+    X_test = test.gen_x_test(N_test, x_test_min, x_test_max);
 
     Fitter approx(X, Y);
     std::vector<double> Y_test;
@@ -101,6 +105,13 @@ int main(int argc, char* argv[]) {
 
     std::string out_file = "Output.dat";
     DataIO::data_writer(out_file, X_test, Y_test);
+    if(choice_f == 1){
+        DataIO::print_error_function_one(X_test, Y_test, N_test);
+    }
+    else{
+        DataIO::print_error_function_two(X_test, Y_test, N_test);
+    }
+
 
 
 //    Gnuplot gp = Gnuplot("lines");

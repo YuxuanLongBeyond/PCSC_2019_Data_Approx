@@ -22,7 +22,10 @@ public:
     std::vector<double> gen_cgl(int N_gen, double x_min, double x_max) const;
     std::vector<double> get_data_x() const;
     std::vector<double> get_data_y() const;
-    std::vector<double> gen_x_test(int N_test) const;
+    std::vector<double> gen_x_test(int N_test, double x_test_min, double x_test_max) const;
+    static void print_error_function_one(std::vector<double> x, std::vector<double> y, int N_test);
+    static void print_error_function_two(std::vector<double> x, std::vector<double> y, int N_test);
+
 
 };
 
