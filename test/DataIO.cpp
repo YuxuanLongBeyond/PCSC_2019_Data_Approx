@@ -15,9 +15,11 @@ void DataIO::test_data_reader(std::string &file_name) {
     double y;
     while(!infile.eof()){
         infile >> x >> y;
+        std::cout << x << y << std::endl;
         data_x.push_back(x);
         data_y.push_back(y);
     }
+    std::cout << data_x.size() << std::endl;
     infile.close();
 }
 
@@ -33,7 +35,13 @@ void DataIO::data_writer(std::string &file_name, std::vector<double> x, std::vec
     std::ofstream generate_data(file_name);
     assert(generate_data.is_open());
     for (int i = 0 ; i < N_gen; i++){
-        generate_data << x[i] << " " << y[i] << "\n";
+        if (i < N_gen - 1) {
+            generate_data << x[i] << " " << y[i] << "\n";
+        }
+        else {
+            generate_data << x[i] << " " << y[i];
+        }
+
     }
     generate_data.close();
     std::cout << "Data is generated." << std::endl;

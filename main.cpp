@@ -10,7 +10,7 @@
 #include "src/Fitter.h"
 #include "test/DataIO.h"
 #include <cassert>
-
+#include "test/gnuplot_i.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -112,11 +112,7 @@ int main(int argc, char* argv[]) {
         DataIO::print_error_function_two(X_test, Y_test, N_test);
     }
 
-
-
-//    Gnuplot gp = Gnuplot("lines");
-//    gp.set_style("points");
-//    gp.plot_xy(X_test, Y_test, "Approximation");
+    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, x_gen, y_gen);
 
     return 0;
 

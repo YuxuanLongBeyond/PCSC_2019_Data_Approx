@@ -66,7 +66,7 @@ Gnuplot::Gnuplot()
         this->valid = false;
         throw GnuplotException("cannot find DISPLAY variable");
       }
-    if (!this->get_program_path("gnuplot"))
+    if (!Gnuplot::get_program_path("gnuplot"))
       {
         this->valid = false;
         throw GnuplotException("Can't find gnuplot in your PATH");
@@ -91,7 +91,7 @@ Gnuplot::Gnuplot(const string &style)
         this->valid = false;
         throw GnuplotException("cannot find DISPLAY variable");
       }
-    if (!this->get_program_path("gnuplot"))
+    if (!Gnuplot::get_program_path("gnuplot"))
       {
         this->valid = false;
         throw GnuplotException("Can't find gnuplot in your PATH");
@@ -119,7 +119,7 @@ Gnuplot::Gnuplot(
         this->valid = false;
         throw GnuplotException("cannot find DISPLAY variable");
       }
-    if (!this->get_program_path("gnuplot"))
+    if (!Gnuplot::get_program_path("gnuplot"))
       {
         this->valid = false;
         throw GnuplotException("Can't find gnuplot in your PATH");
@@ -154,6 +154,59 @@ Gnuplot::Gnuplot(
         this->set_ylabel(labely);
     
     this->plot_xy(x,y,title);
+
+    cout << "Press enter to continue" << endl;
+    while (getchar() != '\n'){}
+}
+
+Gnuplot::Gnuplot(
+        const string &title,
+        const string &titlem,
+        const string &style,
+        const string &labelx,  const string &labely,
+        vector<double> const& x, vector<double> const& y, vector<double> const& xm, vector<double> const& ym)
+{
+    if (getenv("DISPLAY") == nullptr)
+    {
+        this->valid = false;
+        throw GnuplotException("cannot find DISPLAY variable");
+    }
+    if (!Gnuplot::get_program_path("gnuplot"))
+    {
+        this->valid = false;
+        throw GnuplotException("Can't find gnuplot in your PATH");
+    }
+
+
+    this->gnucmd = popen("gnuplot","w");
+    if (!this->gnucmd)
+    {
+        this->valid = false;
+        throw GnuplotException("Could'nt open connection to gnuplot");
+    }
+    this->nplots = 0;
+    this->valid = true;
+
+
+    if (x.empty() || y.empty() || xm.empty() || ym.empty())
+        throw GnuplotException("vectors too small");
+
+    if (style.empty())
+        this->set_style("lines");
+    else
+        this->set_style(style);
+
+    if (labelx.empty())
+        this->set_xlabel("X");
+    else
+        this->set_xlabel(labelx);
+    if (labely.empty())
+        this->set_ylabel("Y");
+    else
+        this->set_ylabel(labely);
+
+    this->plot_xy(x,y,title);
+    this->plot_xy(xm,ym,titlem);
 
     cout << "Press enter to continue" << endl;
     while (getchar() != '\n'){}
@@ -220,7 +273,7 @@ Gnuplot::Gnuplot(
 // 
 Gnuplot::~Gnuplot()
 {
-    if ((this->to_delete).size() > 0)
+    if (!(this->to_delete).empty())
       {
         for (size_t i(0); i < this->to_delete.size(); i++)
             remove(this->to_delete[i].c_str());
@@ -230,12 +283,12 @@ Gnuplot::~Gnuplot()
         cerr << "Problem closing communication to gnuplot" << endl;
 }
 
-bool Gnuplot::is_valid(void)
+bool Gnuplot::is_valid()
 {
     return(this->valid);
 }
 
-bool Gnuplot::get_program_path(const string pname)
+bool Gnuplot::get_program_path(const string& pname)
 {
     list<string> ls;
     char *path;
@@ -262,10 +315,10 @@ bool Gnuplot::get_program_path(const string pname)
 
 void Gnuplot::reset_plot()
 {       
-    if (this->to_delete.size() > 0)
+    if (!this->to_delete.empty())
       {
-        for (size_t i(0); i < this->to_delete.size(); i++)
-            remove(this->to_delete[i].c_str());
+        for (auto & i : this->to_delete)
+            remove(i.c_str());
         to_delete.clear();
       }
     this->nplots = 0;
@@ -325,7 +378,7 @@ void Gnuplot::plot_slope(double a, double b, const string &title)
     ostringstream stitle;
     ostringstream cmdstr;
 
-    if (title == "")
+    if (title.empty())
         stitle << "no title";
     else
         stitle << title;
@@ -390,13 +443,13 @@ void Gnuplot::plot_x(vector<double> d, const string &title)
     //
     // Save the temporary filename
     // 
-    this->to_delete.push_back(name);
+    this->to_delete.emplace_back(name);
 
     //
     // write the data to file
     //
-    for (size_t i(0); i < d.size(); i++)
-        tmp << d[i] << endl;
+    for (double i : d)
+        tmp << i << endl;
     tmp.flush();    
     tmp.close();
 
@@ -452,7 +505,7 @@ void Gnuplot::plot_xy(vector<double> x, vector<double> y, const string &title)
     //
     // Save the temporary filename
     // 
-    this->to_delete.push_back(name);
+    this->to_delete.emplace_back(name);
 
     //
     // write the data to file
