@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project.dir/Test.cpp.o"
   "CMakeFiles/project.dir/main.cpp.o"
   "CMakeFiles/project.dir/src/Fitter.cpp.o"
   "CMakeFiles/project.dir/src/Matrix.cpp.o"

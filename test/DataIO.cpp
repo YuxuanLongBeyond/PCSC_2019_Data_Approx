@@ -78,22 +78,37 @@ std::vector<double> DataIO::get_data_y() const{
     return data_y;
 }
 
-std::vector<double> DataIO::gen_x_test(int N_test) const {
-    double min = data_x[0];
-    double max = data_x[0];
+
+std::vector<double> DataIO::gen_x_test(int N_test, double x_test_min, double x_test_max) const {
     std::vector<double> x_test(N_test);
-    int N = data_x.size();
-    for (int i = 0; i < N; i++){
-        if (min > data_x[i]){
-            min = data_x[i];
-        }
-        if(max < data_x[i]){
-            max = data_x[i];
-        }
-    }
-    double step = (max - min) / (double)(N_test - 1);
+    double step = (x_test_max - x_test_min) / (double)(N_test - 1);
     for (int i = 0; i < N_test; i++){
-        x_test[i] = min + i * step;
+        x_test[i] = x_test_min + i * step;
     }
     return x_test;
+}
+
+void DataIO::print_error_function_one(std::vector<double> x_test, std::vector<double> y_test, int N_test) {
+    double e = 0.0;
+    std::vector<double> y_real(N_test);
+    for (int i = 0; i < N_test; i++){
+        y_real[i] = cos(3.0 * x_test[i] * M_PI);
+        if (e < fabs(y_real[i] - y_test[i])){
+            e = fabs(y_real[i] - y_test[i]);
+        }
+    }
+    std::cout << e << std::endl;
+}
+
+void DataIO::print_error_function_two(std::vector<double> x_test, std::vector<double> y_test, int N_test) {
+
+    double e = 0.0;
+    std::vector<double> y_real(N_test);
+    for (int i = 0; i < N_test; i++){
+        y_real[i] = 1.0 / (1.0 + x_test[i] * x_test[i]);
+        if (e < fabs(y_real[i] - y_test[i])){
+            e = fabs(y_real[i] - y_test[i]);
+        }
+    }
+    std::cout << e << std::endl;
 }

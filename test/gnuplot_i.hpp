@@ -22,7 +22,7 @@
 #ifndef _GNUPLOT_PIPES_H_
 #define _GNUPLOT_PIPES_H_
 
-#include <stdarg.h>
+#include <cstdarg>
 #include <unistd.h>
 
 #include <cstdlib>
@@ -48,7 +48,7 @@ using namespace std;
 class GnuplotException : public runtime_error
 {
     public:
-        GnuplotException(const string &msg) : runtime_error(msg){}
+        explicit GnuplotException(const string &msg) : runtime_error(msg){}
 };
 
 ///@class
@@ -59,7 +59,7 @@ class Gnuplot
         string           pstyle;
         vector<string>   to_delete;
         int              nplots;
-        bool             get_program_path(const string);
+        static bool             get_program_path(const string&);
         bool             valid;
     public:
 
@@ -67,7 +67,7 @@ class Gnuplot
         Gnuplot();
 
         /// set a style during construction
-        Gnuplot(const string &);
+        explicit Gnuplot(const string &);
         
         /// @brief The equivilant of gnuplot_plot_once, the two forms
         /// allow you to plot either (x,y) pairs or just a single
@@ -81,6 +81,20 @@ class Gnuplot
                 const string &, // xlabel
                 const string &, // ylabel
                 vector<double> const& , vector<double> const&);
+
+        /// @brief The equivilant of gnuplot_plot_once, the two forms
+        /// allow you to plot either (x,y) pairs or just a single
+        /// vector at one go
+        ///@param title is the title of the graph
+        ///@param style is the style of the graph
+        ///@param xlabel is the name of the x axis of the graph
+        ///@param ylabel is the name of the y axis of the graph
+        Gnuplot(const string &, // title of the first data set
+                const string &, // title of the second data set
+                const string &, // style
+                const string &, // xlabel
+                const string &, // ylabel
+                vector<double> const& , vector<double> const&, vector<double> const&, vector<double> const&);
 
         /// @brief The equivilant of gnuplot_plot_once, the two forms
         /// allow you to plot either (x,y) pairs or just a single
@@ -134,10 +148,10 @@ class Gnuplot
                 );
 
         /// @brief if multiple plots are present it will clear the plot area
-        void reset_plot(void);
+        void reset_plot();
 
         /// @brief assess the validity
-        bool is_valid(void);
+        bool is_valid();
 };
 
 #endif
