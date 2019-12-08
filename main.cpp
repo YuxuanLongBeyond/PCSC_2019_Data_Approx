@@ -46,50 +46,26 @@ int main(int argc, char* argv[]) {
     DataIO data_handler;
     x_gen = data_handler.gen_x(choice_node, N_gen, x_min, x_max);
     y_gen = data_handler.gen_y(choice_f, N_gen, x_gen);
-
     std::string file_name = "data.dat";
-
     DataIO::data_writer(file_name, x_gen, y_gen);
 
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
+    std::vector<double> Y_test(N_test);
     DataIO test;
 
     test.test_data_reader(file_name);
     X = test.get_data_x();
     Y = test.get_data_y();
-    std::cout << std::endl;
-    X_test = test.gen_x_test(N_test, x_test_min, x_test_max);
-
     Fitter approx(X, Y);
-    std::vector<double> Y_test;
-    std::vector<double> w;
-    if (approx_method == "polynomial"){
-        w = approx.polyfit(poly_degree, poly_lambda);
-        DataIO::print_vector(w);
-        Y_test = approx.polyval(w, X_test);
-    }
-    if (approx_method == "interpolation"){
-        Y_test = approx.interp1(X_test);
-    }
-    if (approx_method == "spline"){
-        Y_test = approx.spline(X_test);
-    }
-    if (approx_method == "dct"){
-        w = approx.dct_fit();
-        DataIO::print_vector(w);
-        Y_test = approx.dct_val(w, X_test);
-    }
-
+    X_test = test.gen_x_test(N_test, x_test_min, x_test_max);
+    Y_test = approx.approx_test(approx_method, approx, X_test, poly_degree, poly_lambda);
     DataIO::print_vector(Y_test);
-
     std::string out_file = "Output.dat";
     DataIO::data_writer(out_file, X_test, Y_test);
     Test::print_error_function(choice_f, X_test, Y_test, N_test);
-
     Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, x_gen, y_gen);
 
     return 0;
-
 }

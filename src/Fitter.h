@@ -110,6 +110,8 @@ public:
      * @return the interpolated values corresponding to the input test points
      */
     std::vector<double> dct_val(std::vector<double>& w, std::vector<double>& x_test) const;
+
+    std::vector<double> approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const;
 };
 
 #endif //PROJECT_FITTER_H
