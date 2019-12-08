@@ -34,14 +34,6 @@ test/Test.h
 test/gnuplot_i.hpp
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.cpp
-stdexcept
--
-cmath
--
-Fitter.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
-
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
 iostream
 -
@@ -50,24 +42,10 @@ vector
 Matrix.h
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.cpp
-Matrix.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
-stdexcept
--
-cmath
--
-
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
 iostream
 -
 vector
--
-
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.cpp
-Config.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.h
-utility
 -
 
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.h
@@ -84,14 +62,6 @@ sstream
 utility
 -
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.cpp
-stdexcept
--
-cmath
--
-DataIO.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.h
-
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.h
 iostream
 -
@@ -99,16 +69,6 @@ fstream
 -
 vector
 -
-
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Test.cpp
-Test.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Test.h
-cmath
--
-cassert
--
-../src/Fitter.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
 
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Test.h
 iostream
@@ -119,10 +79,6 @@ vector
 -
 ../src/Fitter.h
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
-
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.cpp
-gnuplot_i.hpp
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 
 /Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 cstdarg

@@ -1,0 +1,82 @@
+\hypertarget{class_test}{}\doxysection{Test Class Reference}
+\label{class_test}\index{Test@{Test}}
+
+
+{\ttfamily \#include $<$Test.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_test_a99f2bbfac6c95612322b0f10e607ebe5}{Test}} ()
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_test_add14712f804b94e08f6bde83d93706b6}{approx\+\_\+test}} (const std\+::string \&approx\+\_\+method, const Fitter \&approx, std\+::vector$<$ double $>$ X\+\_\+test, int poly\+\_\+degree, double poly\+\_\+lambda) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_test_aa82c54d354cd269cca7d1c70cbfda8fd}{print\+\_\+error\+\_\+function}} (int choice\+\_\+f, std\+::vector$<$ double $>$ x, std\+::vector$<$ double $>$ y, int N\+\_\+test)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class is used for approximating test data and analysis of the result of data approximation The main functions of this class are\+:
+\begin{DoxyEnumerate}
+\item Generate approximated data by a given type of approximation method and relevant parameters
+\item Calculate the error between the actual values and the approximated values 
+\end{DoxyEnumerate}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_test_a99f2bbfac6c95612322b0f10e607ebe5}\label{class_test_a99f2bbfac6c95612322b0f10e607ebe5}} 
+\index{Test@{Test}!Test@{Test}}
+\index{Test@{Test}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{Test()}{Test()}}
+{\footnotesize\ttfamily Test\+::\+Test (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+Constructor with default setting 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_test_add14712f804b94e08f6bde83d93706b6}\label{class_test_add14712f804b94e08f6bde83d93706b6}} 
+\index{Test@{Test}!approx\_test@{approx\_test}}
+\index{approx\_test@{approx\_test}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{approx\_test()}{approx\_test()}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Test\+::approx\+\_\+test (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{approx\+\_\+method,  }\item[{const Fitter \&}]{approx,  }\item[{std\+::vector$<$ double $>$}]{X\+\_\+test,  }\item[{int}]{poly\+\_\+degree,  }\item[{double}]{poly\+\_\+lambda }\end{DoxyParamCaption}) const}
+
+Generate approximated data Y according to a set of test data X 
+\begin{DoxyParams}{Parameters}
+{\em approx\+\_\+method} & the name of the data fitting method \\
+\hline
+{\em approx} & the fitter used for approximation \\
+\hline
+{\em X\+\_\+test} & 1D vector X containing all scalar test samples x\+\_\+i \\
+\hline
+{\em poly\+\_\+degree} & degree of polynomial being approximated \\
+\hline
+{\em poly\+\_\+lambda} & small non-\/negative number to be added on the diagonal when solving the linear system \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1D vector Y approximated from corresponding data X 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_test_aa82c54d354cd269cca7d1c70cbfda8fd}\label{class_test_aa82c54d354cd269cca7d1c70cbfda8fd}} 
+\index{Test@{Test}!print\_error\_function@{print\_error\_function}}
+\index{print\_error\_function@{print\_error\_function}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{print\_error\_function()}{print\_error\_function()}}
+{\footnotesize\ttfamily void Test\+::print\+\_\+error\+\_\+function (\begin{DoxyParamCaption}\item[{int}]{choice\+\_\+f,  }\item[{std\+::vector$<$ double $>$}]{x,  }\item[{std\+::vector$<$ double $>$}]{y,  }\item[{int}]{N\+\_\+test }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Print the error between actual value and the interpolated values from approximation 
+\begin{DoxyParams}{Parameters}
+{\em choice\+\_\+f} & choice for type of function used for generating data, which is 1 or 2\+: 1 for y = cos(3 $\ast$ Pi $\ast$ x); 2 for Runge function\+: y = 1 / (1 + x $^\wedge$ 2); 3 for polynomial y = x$^\wedge$3 -\/ 2x + 3 \\
+\hline
+{\em x} & 1D vector X containing all scalar samples x\+\_\+i for test \\
+\hline
+{\em y} & 1D vector Y containing all scalar approximated samples y\+\_\+i \\
+\hline
+{\em N\+\_\+test} & number of test data points \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+test/Test.\+h\item 
+test/Test.\+cpp\end{DoxyCompactItemize}

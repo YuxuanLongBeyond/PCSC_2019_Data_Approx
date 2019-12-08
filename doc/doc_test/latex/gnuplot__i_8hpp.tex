@@ -1,0 +1,58 @@
+\hypertarget{gnuplot__i_8hpp}{}\doxysection{test/gnuplot\+\_\+i.hpp File Reference}
+\label{gnuplot__i_8hpp}\index{test/gnuplot\_i.hpp@{test/gnuplot\_i.hpp}}
+
+
+This is a direct translation from the C interface written by N. Devillard (which is available from \href{http://ndevilla.free.fr/gnuplot/}{\texttt{ http\+://ndevilla.\+free.\+fr/gnuplot/}}). As in the C interface this uses pipes and so wont run on a system that doesn\textquotesingle{}t have P\+O\+S\+IX pipe support.  
+
+
+{\ttfamily \#include $<$cstdarg$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_gnuplot_exception}{Gnuplot\+Exception}}
+\item 
+class \mbox{\hyperlink{class_gnuplot}{Gnuplot}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{gnuplot__i_8hpp_a0b92738856c4bda43003d1c847483dd2}\label{gnuplot__i_8hpp_a0b92738856c4bda43003d1c847483dd2}} 
+\#define {\bfseries G\+P\+\_\+\+M\+A\+X\+\_\+\+T\+M\+P\+\_\+\+F\+I\+L\+ES}~64
+\item 
+\mbox{\Hypertarget{gnuplot__i_8hpp_a093b4c5627360601a4605251ed3495c8}\label{gnuplot__i_8hpp_a093b4c5627360601a4605251ed3495c8}} 
+\#define {\bfseries G\+P\+\_\+\+T\+M\+P\+\_\+\+N\+A\+M\+E\+\_\+\+S\+I\+ZE}~512
+\item 
+\mbox{\Hypertarget{gnuplot__i_8hpp_adc74c0a238dd6f2220b0b2839cdda632}\label{gnuplot__i_8hpp_adc74c0a238dd6f2220b0b2839cdda632}} 
+\#define {\bfseries G\+P\+\_\+\+C\+M\+D\+\_\+\+S\+I\+ZE}~1024
+\item 
+\mbox{\Hypertarget{gnuplot__i_8hpp_a9e47e543bc0b91c93c5d8d259c563977}\label{gnuplot__i_8hpp_a9e47e543bc0b91c93c5d8d259c563977}} 
+\#define {\bfseries G\+P\+\_\+\+T\+I\+T\+L\+E\+\_\+\+S\+I\+ZE}~80
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is a direct translation from the C interface written by N. Devillard (which is available from \href{http://ndevilla.free.fr/gnuplot/}{\texttt{ http\+://ndevilla.\+free.\+fr/gnuplot/}}). As in the C interface this uses pipes and so wont run on a system that doesn\textquotesingle{}t have P\+O\+S\+IX pipe support. 
+
+A C++ interface to gnuplot.
+
+Rajarshi Guha
+
+Improvements and optimizations have been added by\+: David Cleres \& Nicolas Lesimple
+
+Further improvements and details have been added by\+: \begin{DoxyAuthor}{Authors}
+Yiting Zhang \& Yuxuan Long 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+06/12/2019 
+\end{DoxyDate}
