@@ -172,6 +172,7 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
 
+    std::cout << A << std::endl;
 
     std::vector<double> param;
     param = gauss_solve(A, b);
@@ -250,22 +251,3 @@ std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>&
     return y_test;
 }
 
-std::vector<double> Fitter::approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const{
-    std::vector<double> Y_test;
-    std::vector<double> w;
-    if (approx_method == "polynomial"){
-        w = approx.polyfit(poly_degree, poly_lambda);
-        Y_test = approx.polyval(w, X_test);
-    }
-    if (approx_method == "interpolation"){
-        Y_test = approx.interp1(X_test);
-    }
-    if (approx_method == "spline"){
-        Y_test = approx.spline(X_test);
-    }
-    if (approx_method == "dct"){
-        w = approx.dct_fit();
-        Y_test = approx.dct_val(w, X_test);
-    }
-    return Y_test;
-}

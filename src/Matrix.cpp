@@ -212,7 +212,6 @@ std::vector<double> gauss_solve(const Matrix& A, const std::vector<double>& b) {
     for (int i = 0; i < n; i ++) {
         x[i] = b[i];
     }
-
     // ensure the first row has pivot
     int flag = 1;
     int row = 0;

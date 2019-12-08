@@ -29,6 +29,8 @@ int main(int argc, char* argv[]) {
     double poly_lambda;
     const char ConfigFile[]= "config.txt";// read configuration file
     Config configSettings(ConfigFile);
+
+
     choice_f = configSettings.Read("function_type", 1);
     N_gen = configSettings.Read("num_input_points", 20);
     N_test = configSettings.Read("num_test_points", 1000);
@@ -41,31 +43,52 @@ int main(int argc, char* argv[]) {
     poly_degree = configSettings.Read("polynomial_degree", 2);
     poly_lambda = configSettings.Read("polynomial_lambda", 0.001);
 
-    std::vector<double> x_gen(N_gen);
-    std::vector<double> y_gen(N_gen);
-    DataIO data_handler;
-    x_gen = data_handler.gen_x(choice_node, N_gen, x_min, x_max);
-    y_gen = data_handler.gen_y(choice_f, N_gen, x_gen);
+
     std::string file_name = "data.dat";
-    DataIO::data_writer(file_name, x_gen, y_gen);
+    std::string out_file = "Output.dat";
+
+    // if use_file, then read the data file to extract the data; otherwise, use the generated data
+    int use_file = 0;
+
 
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
     std::vector<double> Y_test(N_test);
-    DataIO test;
+    DataIO data_handler;
+    Test test;
 
-    test.data_reader(file_name);
-    X = test.get_data_x();
-    Y = test.get_data_y();
+
+    if (use_file) {
+        data_handler.data_reader(file_name);
+        X = data_handler.get_data_x();
+        Y = data_handler.get_data_y();
+    }
+    else {
+        // generate sample points (x, y) for data fitting
+        X = data_handler.gen_x(choice_node, N_gen, x_min, x_max);
+        Y = data_handler.gen_y(choice_f, N_gen, X);
+
+        // write the sample points
+        DataIO::data_writer(file_name, X, Y);
+    }
+
+
+
+    // generate test data
+    X_test = data_handler.gen_x_test(N_test, x_test_min, x_test_max);
+
+    // load the data into Fitter
     Fitter approx(X, Y);
-    X_test = test.gen_x_test(N_test, x_test_min, x_test_max);
-    Y_test = approx.approx_test(approx_method, approx, X_test, poly_degree, poly_lambda);
+
+    // interpolate the test data
+    Y_test = test.approx_test(approx_method, approx, X_test, poly_degree, poly_lambda);
     DataIO::print_vector(Y_test);
-    std::string out_file = "Output.dat";
+
+    // write the test data with interpolated values
     DataIO::data_writer(out_file, X_test, Y_test);
     Test::print_error_function(choice_f, X_test, Y_test, N_test);
-    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, x_gen, y_gen);
+//    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, x_gen, y_gen);
 
     return 0;
 }

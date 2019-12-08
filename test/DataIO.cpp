@@ -24,9 +24,11 @@ void DataIO::data_reader(std::string &file_name) {
 }
 
 void DataIO::print_vector(std::vector<double>& x) {
+    std::cout << '[';
     for (auto v: x) {
         std::cout << v << ' ';
     }
+    std::cout << ']' << std::endl;
 }
 
 void DataIO::data_writer(std::string &file_name, std::vector<double> x, std::vector<double> y) {

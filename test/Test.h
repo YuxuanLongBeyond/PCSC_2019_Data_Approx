@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
+#include "../src/Fitter.h"
 /**
  * This class used for analysis the result of data approximation
  * We calculate the error between the real value and the approximation value
@@ -31,6 +31,9 @@ public:
      * @param N_test number of test data points
      */
     static void print_error_function(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
+
+
+    std::vector<double> approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const;
 };
 
 
