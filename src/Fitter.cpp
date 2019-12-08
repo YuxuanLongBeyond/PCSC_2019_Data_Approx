@@ -97,9 +97,10 @@ std::vector<double> Fitter::interp1(std::vector<double>& x_test) const{
     int index = -1; // start_index
     double interp_out;
     for (auto v: x_test) {
-
         if (index < N - 1) {
             index = find_index(index, v);
+        }
+        if (index < N - 1) {
             if (index == -1) {
                 // extrapolation
                 interp_out = data_y[0] + slope[0] * (v - data_x[0]);
@@ -174,13 +175,17 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     std::vector<double> param;
     param = gauss_solve(A, b);
 
+    std::cout << param[m - 4] << ' ' << param[m - 3] << ' ' << param[m - 2] << ' ' << param[m - 1] << ' ' << std::endl;
+    std::cout << N << std::endl;
+
     std::vector<double> y_test;
     int index = -1; // start_index
     double interp_out;
     for (auto v: x_test) {
-
         if (index < N - 1) {
             index = find_index(index, v);
+        }
+        if (index < N - 1) {
             if (index == -1) {
                 // extrapolation
                 interp_out = spline_val(0, v, param);
@@ -192,7 +197,10 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
         else {
             //extrapolation
             interp_out = spline_val(N - 2, v, param);
+
+
         }
+//        std::cout << index << ' ' << v << ' ' << interp_out << std::endl;
         y_test.push_back(interp_out);
     }
     return y_test;
