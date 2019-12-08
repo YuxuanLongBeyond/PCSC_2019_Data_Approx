@@ -22,8 +22,6 @@ CMakeFiles/project.dir/test/Config.cpp.o: ../test/Config.h
 CMakeFiles/project.dir/test/DataIO.cpp.o: ../test/DataIO.cpp
 CMakeFiles/project.dir/test/DataIO.cpp.o: ../test/DataIO.h
 
-CMakeFiles/project.dir/test/Test.cpp.o: ../src/Fitter.h
-CMakeFiles/project.dir/test/Test.cpp.o: ../src/Matrix.h
 CMakeFiles/project.dir/test/Test.cpp.o: ../test/Test.cpp
 CMakeFiles/project.dir/test/Test.cpp.o: ../test/Test.h
 

@@ -29,6 +29,8 @@ src/Fitter.h
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
 test/DataIO.h
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
+cassert
+-
 test/Test.h
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
 test/gnuplot_i.hpp
@@ -48,12 +50,6 @@ iostream
 vector
 -
 
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.cpp
-Config.h
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.h
-utility
--
-
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.h
 string
 -
@@ -69,12 +65,12 @@ utility
 -
 
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.cpp
-stdexcept
--
-cmath
--
 DataIO.h
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
+cmath
+-
+cassert
+-
 
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
 iostream
@@ -91,8 +87,6 @@ cmath
 -
 cassert
 -
-../src/Fitter.h
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
 
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
 iostream
@@ -101,12 +95,6 @@ fstream
 -
 vector
 -
-../src/Fitter.h
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
-
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.cpp
-gnuplot_i.hpp
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 cstdarg
