@@ -170,6 +170,11 @@ public:
      */
     static int is_zero(double a, double threshold = 1e-15);
 
+    /**
+     * Exchange the i th row and the j th row
+     * @param i row index i for the matrix
+     * @param j row index j for the matrix
+     */
     void row_exchange(int i, int j);
 
     /**

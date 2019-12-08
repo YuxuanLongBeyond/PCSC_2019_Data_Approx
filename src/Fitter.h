@@ -20,7 +20,7 @@
  * 3. Cubic spline interpolation, i.e. spline
  * 4. Fourier interpolation, i.e. dct_fit, dct_val
  *
- * Note that the usage of the previous three methods are very similar to the ones in Matlab.
+ * Note that the usages of the previous three methods are very similar to the ones in Matlab.
  */
 class Fitter {
 private:
@@ -30,7 +30,7 @@ private:
     std::vector<double> data_x;
 
     /**
-     * Input 1D vector Y containing all scalar samples y_i which corresponds to x_i
+     * Input 1D vector Y containing all scalar samples y_i which correspond to x_i
      */
     std::vector<double> data_y;
 
@@ -40,10 +40,10 @@ private:
     int N;
 public:
     /**
-     * Constructor for reading the input data of x and y
-     * x and y here are 1D vector having the same size
-     * @param x
-     * @param y
+     * Constructor for loading the input data of x and y
+     * Note x and y here are 1D vectors having the same size
+     * @param x input 1D vector X containing all scalar samples x_i
+     * @param y input 1D vector Y containing all scalar samples y_i which correspond to x_i
      */
     Fitter(std::vector<double>& x, std::vector<double>& y);
 

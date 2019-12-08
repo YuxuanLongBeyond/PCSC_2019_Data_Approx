@@ -12,10 +12,10 @@
 /**
  * This class is mainly used for data's input and output, which contains:
  * 1. read 2D data from a data file
- * 2. print a given vector
+ * 2. print a given vector for debugging
  * 3. write 2D data into a data file
  * 4. generate original data from given parameters
- * 5. generate approximation test data from given parameters
+ * 5. generate approximated test data from given parameters
  *
  */
 
@@ -40,7 +40,7 @@ public:
      * Read the 2D input data X and Y from a given data file
      * The data file here has two columns:
      * The first column is X, the second column is Y
-     * X and Y are 1D vector having the same size, which are numbers of rows
+     * X and Y are 1D vector having the same size
      * @param file_name file name of the data file we want to read
      */
     void data_reader(std::string &file_name);
@@ -85,20 +85,20 @@ public:
     std::vector<double> gen_y(int choice_f, int N_gen, std::vector<double> x_gen) const;
 
     /**
-     * Get the read data X
-     * @return 1D vector X read from file before
+     * Get the data X
+     * @return 1D vector X
      */
     std::vector<double> get_data_x() const;
 
     /**
-     * Get the read data Y
-     * @return 1D vector Y read from file before
+     * Get the data Y
+     * @return 1D vector Y
      */
     std::vector<double> get_data_y() const;
 
     /**
      * Generate test data X from relative parameters
-     * Note: the test data points use uniform distribution
+     * Note: the test data points are uniformly distributed
      * @param N_test number of test data points
      * @param x_test_min minimum value of test data points
      * @param x_test_max maximum value of test data points

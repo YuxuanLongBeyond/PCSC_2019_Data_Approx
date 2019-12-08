@@ -31,9 +31,9 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
 
 void Test::print_error_function(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
     double e = 0.0;
-    std::vector<double> y_real(N_test);
+    std::vector<double> y_real(N_test); // ground-truth data y
     for (int i = 0; i < N_test; i++){
-        // different choice of function corresponds to different real values of Y
+        // different choice of function
         if (choice_f == 1){
             y_real[i] = cos(3.0 * x_test[i] * M_PI);
         }

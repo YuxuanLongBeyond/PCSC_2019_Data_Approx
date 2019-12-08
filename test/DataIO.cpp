@@ -63,7 +63,7 @@ std::vector<double> DataIO::gen_x(int choice_node, int N_gen, double x_min, doub
     if (N_gen < 2) {
         throw std::invalid_argument("Too little input samples!");
     }
-    if (x_max < x_min){
+    if (x_max <= x_min){
         throw std::invalid_argument("The maximum value should not smaller than the minimum value!");
     }
     double step = (x_max - x_min) / (double)(N_gen - 1);
@@ -110,6 +110,9 @@ std::vector<double> DataIO::get_data_y() const{
 std::vector<double> DataIO::gen_x_test(int N_test, double x_test_min, double x_test_max) const {
     if (N_test < 2) {
         throw std::invalid_argument("Too little input test samples!");
+    }
+    if (x_test_max <= x_test_min){
+        throw std::invalid_argument("The maximum value should not smaller than the minimum value!");
     }
     std::vector<double> x_test(N_test);
     double step = (x_test_max - x_test_min) / (double)(N_test - 1); // calculate the step size
