@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
     std::vector<double> Y_test(N_test);
     DataIO test;
 
-    test.test_data_reader(file_name);
+    test.data_reader(file_name);
     X = test.get_data_x();
     Y = test.get_data_y();
     Fitter approx(X, Y);

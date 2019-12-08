@@ -8,7 +8,7 @@
 
 DataIO::DataIO() = default;
 
-void DataIO::test_data_reader(std::string &file_name) {
+void DataIO::data_reader(std::string &file_name) {
     std::ifstream infile(file_name);
     assert(infile.is_open());
     double x;
