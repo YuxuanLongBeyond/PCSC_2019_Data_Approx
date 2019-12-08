@@ -135,7 +135,6 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     int m = 4 * (N - 1);
     Matrix A(m, m);
     std::vector<double> b(m);
-//    std::cout << data_x[N - 1];
 
     // construct a linear system
     b[0] = 0.0; b[1] = data_y[0];
@@ -171,8 +170,6 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     A[m - 1][m - 4] = pow(data_x[N - 1], 3);
     A[m - 1][m - 3] = pow(data_x[N - 1], 2);
     A[m - 1][m - 2] = data_x[N - 1]; A[m - 1][m - 1] = 1.0;
-
-    std::cout << A << std::endl;
 
     std::vector<double> param;
     param = gauss_solve(A, b);
