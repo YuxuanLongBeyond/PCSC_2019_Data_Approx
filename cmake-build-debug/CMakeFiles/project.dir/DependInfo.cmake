@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Matrix.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/src/Matrix.cpp.o"
   "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/Config.cpp.o"
   "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/DataIO.cpp.o"
+  "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/Test.cpp.o"
   "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.cpp" "/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir/test/gnuplot_i.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

@@ -111,6 +111,12 @@
 		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h">
 			<Option target="project"/>
 		</Unit>
+		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.cpp">
+			<Option target="project"/>
+		</Unit>
+		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h">
+			<Option target="project"/>
+		</Unit>
 		<Unit filename="/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.cpp">
 			<Option target="project"/>
 		</Unit>

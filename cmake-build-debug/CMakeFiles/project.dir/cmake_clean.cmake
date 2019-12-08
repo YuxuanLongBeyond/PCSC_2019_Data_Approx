@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/project.dir/src/Matrix.cpp.o"
   "CMakeFiles/project.dir/test/Config.cpp.o"
   "CMakeFiles/project.dir/test/DataIO.cpp.o"
+  "CMakeFiles/project.dir/test/Test.cpp.o"
   "CMakeFiles/project.dir/test/gnuplot_i.cpp.o"
   "project"
   "project.pdb"

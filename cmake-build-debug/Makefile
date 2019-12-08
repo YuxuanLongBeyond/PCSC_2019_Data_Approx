@@ -258,6 +258,33 @@ test/DataIO.cpp.s:
 	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/DataIO.cpp.s
 .PHONY : test/DataIO.cpp.s
 
+test/Test.o: test/Test.cpp.o
+
+.PHONY : test/Test.o
+
+# target to build an object file
+test/Test.cpp.o:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Test.cpp.o
+.PHONY : test/Test.cpp.o
+
+test/Test.i: test/Test.cpp.i
+
+.PHONY : test/Test.i
+
+# target to preprocess a source file
+test/Test.cpp.i:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Test.cpp.i
+.PHONY : test/Test.cpp.i
+
+test/Test.s: test/Test.cpp.s
+
+.PHONY : test/Test.s
+
+# target to generate assembly for a file
+test/Test.cpp.s:
+	$(MAKE) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/test/Test.cpp.s
+.PHONY : test/Test.cpp.s
+
 test/gnuplot_i.o: test/gnuplot_i.cpp.o
 
 .PHONY : test/gnuplot_i.o
@@ -309,6 +336,9 @@ help:
 	@echo "... test/DataIO.o"
 	@echo "... test/DataIO.i"
 	@echo "... test/DataIO.s"
+	@echo "... test/Test.o"
+	@echo "... test/Test.i"
+	@echo "... test/Test.s"
 	@echo "... test/gnuplot_i.o"
 	@echo "... test/gnuplot_i.i"
 	@echo "... test/gnuplot_i.s"
