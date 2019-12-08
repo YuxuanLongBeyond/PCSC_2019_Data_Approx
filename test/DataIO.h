@@ -76,8 +76,8 @@ public:
 
     /**
      * Generate original data Y from a certain type of function and relative parameters which corresponds to data X
-     * @param choice_f choice for type of function used for generating data, which is 1 or 2:
-     * 1 is y = cos(3 * Pi * x), 2 is Runge function: y = 1 / (1 + x ^ 2)
+     * @param choice_f choice for type of function used for generating data, which is 1, 2 or 3:
+     * 1 is y = cos(3 * Pi * x), 2 is Runge function: y = 1 / (1 + x ^ 2), 3 is polynomial function: y = x ^ 3 - 2 * x + 3
      * @param N_gen number of data points to generate
      * @param x_gen 1D vector X already generated, which contains all scalar samples x_i
      * @return 1D vector Y containing all scalar samples y_i, which corresponds to x_i

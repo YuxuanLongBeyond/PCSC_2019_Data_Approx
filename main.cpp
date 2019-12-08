@@ -9,13 +9,13 @@
 #include <cstdio>
 #include "src/Fitter.h"
 #include "test/DataIO.h"
-#include <cassert>
 #include "test/Test.h"
 #include "test/gnuplot_i.hpp"
 
 
 int main(int argc, char* argv[]) {
 
+    int use_file;
     int choice_f;
     int choice_node;
     int N_gen;
@@ -25,12 +25,14 @@ int main(int argc, char* argv[]) {
     double x_test_min;
     double x_test_max;
     std::string approx_method;
+    std::string file_name;
+    std::string out_file;
     int poly_degree;
     double poly_lambda;
-    const char ConfigFile[]= "config.txt";// read configuration file
+    const char ConfigFile[] = "config.txt";// read configuration file
     Config configSettings(ConfigFile);
 
-
+    use_file = configSettings.Read("use_file", 0);
     choice_f = configSettings.Read("function_type", 1);
     N_gen = configSettings.Read("num_input_points", 20);
     N_test = configSettings.Read("num_test_points", 1000);
@@ -40,16 +42,10 @@ int main(int argc, char* argv[]) {
     x_test_max = configSettings.Read("x_test_max", 1);
     choice_node = configSettings.Read("node_type", 1);
     approx_method = configSettings.Read("approximation_method", approx_method);
+    file_name = configSettings.Read("use_file_name", file_name);
+    out_file = configSettings.Read("out_file_name", out_file);
     poly_degree = configSettings.Read("polynomial_degree", 2);
     poly_lambda = configSettings.Read("polynomial_lambda", 0.001);
-
-
-    std::string file_name = "data.dat";
-    std::string out_file = "Output.dat";
-
-    // if use_file, then read the data file to extract the data; otherwise, use the generated data
-    int use_file = 0;
-
 
     std::vector<double> X;
     std::vector<double> Y;
@@ -58,7 +54,7 @@ int main(int argc, char* argv[]) {
     DataIO data_handler;
     Test test;
 
-
+    // if use_file, then read the data file to extract the data; otherwise, use the generated data
     if (use_file) {
         data_handler.data_reader(file_name);
         X = data_handler.get_data_x();
@@ -73,8 +69,6 @@ int main(int argc, char* argv[]) {
         DataIO::data_writer(file_name, X, Y);
     }
 
-
-
     // generate test data
     X_test = data_handler.gen_x_test(N_test, x_test_min, x_test_max);
 
@@ -88,7 +82,7 @@ int main(int argc, char* argv[]) {
     // write the test data with interpolated values
     DataIO::data_writer(out_file, X_test, Y_test);
     Test::print_error_function(choice_f, X_test, Y_test, N_test);
-//    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, x_gen, y_gen);
+    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
 
     return 0;
 }

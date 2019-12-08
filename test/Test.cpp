@@ -9,23 +9,6 @@
 
 Test::Test() = default;
 
-void Test::print_error_function(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
-    double e = 0.0;
-    std::vector<double> y_real(N_test);
-    for (int i = 0; i < N_test; i++){
-        if (choice_f == 1){
-            y_real[i] = cos(3.0 * x_test[i] * M_PI);
-        }
-        else{
-            y_real[i] = 1.0 / (1.0 + x_test[i] * x_test[i]);
-        }
-        if (e < fabs(y_real[i] - y_test[i])){
-            e = fabs(y_real[i] - y_test[i]);
-        }
-    }
-    std::cout << e << std::endl;
-}
-
 std::vector<double> Test::approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const{
     std::vector<double> Y_test;
     std::vector<double> w;
@@ -44,4 +27,26 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
         Y_test = approx.dct_val(w, X_test);
     }
     return Y_test;
+}
+
+void Test::print_error_function(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
+    double e = 0.0;
+    std::vector<double> y_real(N_test);
+    for (int i = 0; i < N_test; i++){
+        // different choice of function corresponds to different real values of Y
+        if (choice_f == 1){
+            y_real[i] = cos(3.0 * x_test[i] * M_PI);
+        }
+        if (choice_f == 2){
+            y_real[i] = 1.0 / (1.0 + x_test[i] * x_test[i]);
+        }
+        else{
+            y_real[i] = pow(x_test[i], 3) - 2 * x_test[i] + 3;
+        }
+        // the error of approximation is the maximum value among the error between the real value and the approximated value for each test point
+        if (e < fabs(y_real[i] - y_test[i])){
+            e = fabs(y_real[i] - y_test[i]);
+        }
+    }
+    std::cout << e << std::endl;
 }

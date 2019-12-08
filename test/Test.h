@@ -10,8 +10,10 @@
 #include <vector>
 #include "../src/Fitter.h"
 /**
- * This class used for analysis the result of data approximation
- * We calculate the error between the real value and the approximation value
+ * This class is used for approximating test data and analysis the result of data approximation
+ * The main functions of this class are:
+ * 1. Generate approximated data by a given type of approximation method and relative parameters
+ * 2. Calculate the error between the real value and the approximation value
  */
 
 class Test {
@@ -23,6 +25,17 @@ public:
     Test();
 
     /**
+     * Generate approximated data Y according to a set of test data X
+     * @param approx_method data fitting method
+     * @param approx the fitter used for approximation
+     * @param X_test 1D vector X containing all scalar test samples x_i
+     * @param poly_degree degree of polynomial being approximated
+     * @param poly_lambda small non-negative number to be added on the diagonal when solving the linear system
+     * @return 1D vector Y approximated from corresponding data X
+     */
+    std::vector<double> approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const;
+
+    /**
      * Print the error between real value and the result from approximation
      * @param choice_f choice for type of function used for generating data, which is 1 or 2:
      * 1 is y = cos(3 * Pi * x), 2 is Runge function: y = 1 / (1 + x ^ 2)
@@ -32,8 +45,6 @@ public:
      */
     static void print_error_function(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
 
-
-    std::vector<double> approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const;
 };
 
 

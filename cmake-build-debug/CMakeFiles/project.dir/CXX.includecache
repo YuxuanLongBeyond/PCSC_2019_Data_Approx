@@ -6,19 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/main.cpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/main.cpp
 iostream
 -
 fstream
 -
 test/Config.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.h
 cmath
 -
 stdexcept
 -
 src/Matrix.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Matrix.h
 vector
 -
 map
@@ -26,39 +26,35 @@ map
 cstdio
 -
 src/Fitter.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
 test/DataIO.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.h
-cassert
--
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
 test/Test.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Test.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
 test/gnuplot_i.hpp
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.cpp
-stdexcept
--
-cmath
--
-Fitter.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
-
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
 iostream
 -
 vector
 -
 Matrix.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Matrix.h
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Matrix.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Matrix.h
 iostream
 -
 vector
 -
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Config.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.cpp
+Config.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.h
+utility
+-
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Config.h
 string
 -
 map
@@ -72,7 +68,15 @@ sstream
 utility
 -
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/DataIO.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.cpp
+stdexcept
+-
+cmath
+-
+DataIO.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/DataIO.h
 iostream
 -
 fstream
@@ -80,7 +84,17 @@ fstream
 vector
 -
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/Test.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.cpp
+Test.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
+cmath
+-
+cassert
+-
+../src/Fitter.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
 iostream
 -
 fstream
@@ -88,9 +102,13 @@ fstream
 vector
 -
 ../src/Fitter.h
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/src/Fitter.h
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
 
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.cpp
+gnuplot_i.hpp
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
+
+/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/gnuplot_i.hpp
 cstdarg
 -
 unistd.h

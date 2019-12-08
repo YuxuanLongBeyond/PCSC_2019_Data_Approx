@@ -1,6 +1,20 @@
-//
-// Created by yiting on 06.12.19.
-//
+/**
+ * Read configuration file
+ *
+ * @brief This class is mainly used for reading configuration file,
+ * originally written by David_xtd (which is available from
+ * https://blog.csdn.net/david_xtd/article/details/9320549)
+ *
+ * @author David_xtd
+ *
+ * Improvements and optimizations have been added by:
+ * @author Yiting Zhang & Yuxuan Long
+ *
+ * @date 06/12/2019
+ *
+ * \file Config.cpp
+ *
+ */
 
 #include "Config.h"
 

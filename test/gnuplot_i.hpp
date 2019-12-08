@@ -9,13 +9,15 @@
 *
 * Rajarshi Guha
 *
- *
- * Improvements and optimizations have been added by:
- * David Cleres & Nicolas Lesimple
 *
-* 07/03/03
+* Improvements and optimizations have been added by:
+* David Cleres & Nicolas Lesimple
 *
-* \file gnuplot_i.cpp
+* Further improvements and details have been added by:
+* @authors Yiting Zhang & Yuxuan Long
+* @date 06/12/2019
+*
+* \file gnuplot_i.hpp
 *
 */
 
