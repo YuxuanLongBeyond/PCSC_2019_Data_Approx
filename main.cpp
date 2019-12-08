@@ -15,6 +15,7 @@
 
 int main(int argc, char* argv[]) {
 
+    // Define variables (see the comments in configuration file, like config.txt)
     int use_file;
     int choice_f;
     int choice_node;
@@ -29,8 +30,15 @@ int main(int argc, char* argv[]) {
     std::string out_file;
     int poly_degree;
     double poly_lambda;
-    const char ConfigFile[] = "config.txt";// read configuration file
-    Config configSettings(ConfigFile);
+
+    std::string config_file_name;
+    if (argc > 1) {
+        config_file_name = argv[1];
+    }
+    else {
+        config_file_name = "config.txt"; // default name for configuration file
+    }
+    Config configSettings(config_file_name);
 
     use_file = configSettings.Read("use_file", 0);
     choice_f = configSettings.Read("function_type", 1);
