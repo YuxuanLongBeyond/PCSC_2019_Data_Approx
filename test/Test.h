@@ -43,9 +43,9 @@ public:
      * @param y 1D vector Y containing all scalar approximated samples y_i
      * @param N_test number of test data points
      */
-    static void print_error_function(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
+    static void compute_error(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
 
-    static void print_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
+    static void compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
 
 };
 

@@ -59,7 +59,6 @@ std::vector<double> Fitter::polyval(std::vector<double>& w, std::vector<double>&
             A[i][j] = pow(x_test[i], j);
         }
     }
-//    std::cout << A << std::endl;
     std::vector<double> y_test;
     y_test = A * w;
     return y_test;
@@ -175,9 +174,6 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
     std::vector<double> param;
     param = gauss_solve(A, b);
 
-    std::cout << param[m - 4] << ' ' << param[m - 3] << ' ' << param[m - 2] << ' ' << param[m - 1] << ' ' << std::endl;
-    std::cout << N << std::endl;
-
     std::vector<double> y_test;
     int index = -1; // start_index
     double interp_out;
@@ -200,7 +196,6 @@ std::vector<double> Fitter::spline(std::vector<double>& x_test) const {
 
 
         }
-//        std::cout << index << ' ' << v << ' ' << interp_out << std::endl;
         y_test.push_back(interp_out);
     }
     return y_test;

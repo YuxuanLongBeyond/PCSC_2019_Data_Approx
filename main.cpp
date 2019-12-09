@@ -1,12 +1,7 @@
 #include <iostream>
-#include <fstream>
 #include "config/Config.h"
-#include <cmath>
 #include <stdexcept>
-#include "src/Matrix.h"
 #include <vector>
-#include <map>
-#include <cstdio>
 #include "src/Fitter.h"
 #include "test/DataIO.h"
 #include "test/Test.h"
@@ -15,95 +10,80 @@
 
 int main(int argc, char* argv[]) {
 
-    // Define variables (see the descriptions in configuration file, like config.txt)
-    int use_file;
-    int choice_f;
-    int choice_node;
-    int N_gen;
-    int N_test;
-    double x_min;
-    double x_max;
-    double x_test_min;
-    double x_test_max;
-    std::string approx_method;
-    std::string file_name;
-    std::string out_file;
-    std::string matlab_file;
-    int poly_degree;
-    double poly_lambda;
-
     std::string config_file_name;
     if (argc > 1) {
+        std::cout << "Trying to use the configuration file provided ..." << std::endl;
         config_file_name = argv[1];
     }
     else {
         config_file_name = "config.txt"; // default name for configuration file
+        std::cout << "No argument provided, the default configuration file " << config_file_name << " is to be used" << std::endl;
     }
     config_file_name = "../config/" + config_file_name;
+    std::cout << "Loading parameters from " << config_file_name << std::endl;
     Config configSettings(config_file_name);
 
-    use_file = configSettings.Read("use_file", 0);
-    choice_f = configSettings.Read("function_type", 1);
-    N_gen = configSettings.Read("num_input_points", 20);
-    N_test = configSettings.Read("num_test_points", 1000);
-    x_min = configSettings.Read("x_input_min", 0);
-    x_max = configSettings.Read("x_input_max", 1);
-    x_test_min = configSettings.Read("x_test_min", 0);
-    x_test_max = configSettings.Read("x_test_max", 1);
-    choice_node = configSettings.Read("node_type", 1);
+    std::string approx_method = "polynomial";
+    std::string file_name = "data.dat";
+    std::string out_file = "Output.dat";
+    std::string mat_file = "poly_Matlab.dat";
+
+    // Define variables from configuration file (see the descriptions in example config.txt)
+    int use_file = configSettings.Read("use_file", 0);
+    int choice_f = configSettings.Read("function_type", 1);
+    int N_gen = configSettings.Read("num_input_points", 20);
+    int N_test = configSettings.Read("num_test_points", 1000);
+    int choice_node = configSettings.Read("node_type", 1);
+    int poly_degree = configSettings.Read("polynomial_degree", 2);
+    double x_min = configSettings.Read("x_input_min", 0);
+    double x_max = configSettings.Read("x_input_max", 1);
+    double x_test_min = configSettings.Read("x_test_min", 0);
+    double x_test_max = configSettings.Read("x_test_max", 1);
+    double poly_lambda = configSettings.Read("polynomial_lambda", 0);
     approx_method = configSettings.Read("approximation_method", approx_method);
-    file_name = configSettings.Read("use_file_name", file_name);
-    out_file = configSettings.Read("out_file_name", out_file);
-    poly_degree = configSettings.Read("polynomial_degree", 2);
-    poly_lambda = configSettings.Read("polynomial_lambda", 0);
-    matlab_file = configSettings.Read("MATLAB_generated_file_name", matlab_file);
+    file_name = "../data/" + configSettings.Read("use_file_name", file_name);
+    out_file = "../data/" + configSettings.Read("out_file_name", out_file);
+    mat_file = "../data/" + configSettings.Read("MATLAB_generated_file_name", mat_file);
 
-    file_name = "../data/" + file_name;
-    out_file = "../data/" + out_file;
-
-    std::vector<double> X;
-    std::vector<double> Y;
-    std::vector<double> X_test(N_test);
-    std::vector<double> Y_test(N_test);
-    std::vector<double> X_matlab(N_test);
-    std::vector<double> Y_matlab(N_test);
+    std::vector<double> X; std::vector<double> Y; // input data
+    std::vector<double> X_test(N_test); std::vector<double> Y_test(N_test); // test data
+    std::vector<double> X_mat(N_test); std::vector<double> Y_mat(N_test); // Matlab data
     DataIO data_handler;
     Test test;
 
     // if use_file, then read the data file to extract the data; otherwise, use the generated data
     if (use_file) {
+        std::cout << "Reading the file provided by the user" << std::endl;
         data_handler.data_reader(file_name);
         X = data_handler.get_data_x();
         Y = data_handler.get_data_y();
     }
     else {
-        // generate sample points (x, y) for data fitting
+        std::cout << "Generating the sample points X, Y for data fitting" << std::endl;
         X = data_handler.gen_x(choice_node, N_gen, x_min, x_max);
         Y = data_handler.gen_y(choice_f, N_gen, X);
 
-        // write the sample points
+        std::cout << "Writing the generated sample points X, Y into " << file_name << std::endl;
         DataIO::data_writer(file_name, X, Y);
     }
-
-    // generate test data
-    X_test = data_handler.gen_x_test(N_test, x_test_min, x_test_max);
-
-    // load the data into Fitter
     Fitter approx(X, Y);
 
-    // interpolate the test data
+    std::cout << "Generating test data X_test" << std::endl;
+    X_test = data_handler.gen_x_test(N_test, x_test_min, x_test_max);
+
+    std::cout << "Data approximation using " << approx_method << std::endl;
     Y_test = test.approx_test(approx_method, approx, X_test, poly_degree, poly_lambda);
-    DataIO::print_vector(Y_test);
 
-    // write the test data with interpolated values
+    std::cout << "Writing X_test with the approximated data Y_test into " << out_file << std::endl;
     DataIO::data_writer(out_file, X_test, Y_test);
-    Test::print_error_function(choice_f, X_test, Y_test, N_test);
-    //Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
 
-    DataIO matlab_data;
-    matlab_data.data_reader(matlab_file);
-    Y_matlab = matlab_data.get_data_y();
-    Test::print_mse(Y_test, Y_matlab);
+//    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
+
+    Test::compute_error(choice_f, X_test, Y_test, N_test);
+
+    data_handler.data_reader(mat_file);
+    Y_mat = data_handler.get_data_y();
+    Test::compute_mse(Y_test, Y_mat);
 
     return 0;
 }

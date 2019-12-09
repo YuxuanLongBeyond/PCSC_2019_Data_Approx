@@ -19,7 +19,7 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
         w = approx.polyfit(poly_degree, poly_lambda);
         Y_test = approx.polyval(w, X_test);
     }
-    if (approx_method == "interpolation"){
+    if (approx_method == "interp1"){
         Y_test = approx.interp1(X_test);
     }
     if (approx_method == "spline"){
@@ -32,7 +32,7 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
     return Y_test;
 }
 
-void Test::print_error_function(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
+void Test::compute_error(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
     if (choice_f != 1 && choice_f != 2 && choice_f != 3){
         throw std::invalid_argument("Invalid input choice for function type!");
     }
@@ -55,15 +55,15 @@ void Test::print_error_function(int choice_f, std::vector<double> x_test, std::v
         else{
             y_real[i] = pow(x_test[i], 3) - 2 * x_test[i] + 3;
         }
-        // the error of approximation is the maximum value among the error between the real value and the approximated value for each test point
+        // the error of approximation is the maximum value among the error between the actual value and the approximated value for each test point
         if (e < fabs(y_real[i] - y_test[i])){
             e = fabs(y_real[i] - y_test[i]);
         }
     }
-    std::cout << e << std::endl;
+    std::cout << "The error of the approximation w.r.t. the true data is "<< e << std::endl;
 }
 
-void Test::print_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
+void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
     if (Y_test.size() != Y_matlab.size()){
         throw std::invalid_argument("Incompatible data size!");
     }
@@ -73,5 +73,5 @@ void Test::print_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
         mse = mse + pow((Y_test[i] - Y_matlab[i]),2);
     }
     mse = mse / N;
-    std::cout << mse << std::endl;
+    std::cout << "The MSE between data approximated by our implementation and Matlab is " << mse << std::endl;
 }
