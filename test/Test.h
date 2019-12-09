@@ -45,6 +45,8 @@ public:
      */
     static void print_error_function(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
 
+    static void print_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
+
 };
 
 

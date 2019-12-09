@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
     std::string approx_method;
     std::string file_name;
     std::string out_file;
+    std::string matlab_file;
     int poly_degree;
     double poly_lambda;
 
@@ -54,11 +55,15 @@ int main(int argc, char* argv[]) {
     out_file = configSettings.Read("out_file_name", out_file);
     poly_degree = configSettings.Read("polynomial_degree", 2);
     poly_lambda = configSettings.Read("polynomial_lambda", 0.001);
+    matlab_file = configSettings.Read("MATLAB_generated_file_name", matlab_file);
+
 
     std::vector<double> X;
     std::vector<double> Y;
     std::vector<double> X_test(N_test);
     std::vector<double> Y_test(N_test);
+    std::vector<double> X_matlab(N_test);
+    std::vector<double> Y_matlab(N_test);
     DataIO data_handler;
     Test test;
 
@@ -90,7 +95,12 @@ int main(int argc, char* argv[]) {
     // write the test data with interpolated values
     DataIO::data_writer(out_file, X_test, Y_test);
     Test::print_error_function(choice_f, X_test, Y_test, N_test);
-    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
+    //Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
+
+    DataIO matlab_data;
+    matlab_data.data_reader(matlab_file);
+    Y_matlab = matlab_data.get_data_y();
+    Test::print_mse(Y_test, Y_matlab);
 
     return 0;
 }

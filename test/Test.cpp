@@ -62,3 +62,16 @@ void Test::print_error_function(int choice_f, std::vector<double> x_test, std::v
     }
     std::cout << e << std::endl;
 }
+
+void Test::print_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
+    if (Y_test.size() != Y_matlab.size()){
+        throw std::invalid_argument("Incompatible data size!");
+    }
+    double mse = 0.0;
+    int N = Y_test.size();
+    for (int i = 0; i < N; i++){
+        mse = mse + pow((Y_test[i] - Y_matlab[i]),2);
+    }
+    mse = mse / N;
+    std::cout << mse << std::endl;
+}

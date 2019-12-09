@@ -42,6 +42,7 @@ void DataIO::data_writer(std::string &file_name, std::vector<double> x, std::vec
     if (!generate_data.is_open()){
         throw std::invalid_argument("Can't open file!");
     }
+    generate_data.precision(8);
     for (int i = 0 ; i < N_gen; i++){
         if (i < N_gen - 1) {
             generate_data << x[i] << " " << y[i] << "\n";

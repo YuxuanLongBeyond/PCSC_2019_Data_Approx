@@ -70,16 +70,6 @@ fstream
 vector
 -
 
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.cpp
-stdexcept
--
-Test.h
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
-cmath
--
-../src/Fitter.h
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/src/Fitter.h
-
 /home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/test/Test.h
 iostream
 -
