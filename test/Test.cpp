@@ -73,5 +73,5 @@ void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab)
         mse = mse + pow((Y_test[i] - Y_matlab[i]),2);
     }
     mse = mse / N;
-    std::cout << "The MSE between data approximated by our implementation and Matlab is " << mse << std::endl;
+    std::cout << "The MSE between data approximated by our implementation and Matlab built-in functions is " << mse << std::endl;
 }

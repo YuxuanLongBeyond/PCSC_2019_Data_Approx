@@ -30,15 +30,15 @@ int main(int argc, char* argv[]) {
 
     // Define variables from configuration file (see the descriptions in example config.txt)
     int use_file = configSettings.Read("use_file", 0);
-    int choice_f = configSettings.Read("function_type", 1);
-    int N_gen = configSettings.Read("num_input_points", 20);
-    int N_test = configSettings.Read("num_test_points", 1000);
+    int choice_f = configSettings.Read("function_type", 2);
+    int N_gen = configSettings.Read("num_input_points", 41);
+    int N_test = configSettings.Read("num_test_points", 1001);
     int choice_node = configSettings.Read("node_type", 1);
-    int poly_degree = configSettings.Read("polynomial_degree", 2);
-    double x_min = configSettings.Read("x_input_min", 0);
-    double x_max = configSettings.Read("x_input_max", 1);
-    double x_test_min = configSettings.Read("x_test_min", 0);
-    double x_test_max = configSettings.Read("x_test_max", 1);
+    int poly_degree = configSettings.Read("polynomial_degree", 20);
+    double x_min = configSettings.Read("x_input_min", -10);
+    double x_max = configSettings.Read("x_input_max", 10);
+    double x_test_min = configSettings.Read("x_test_min", -10);
+    double x_test_max = configSettings.Read("x_test_max", 10);
     double poly_lambda = configSettings.Read("polynomial_lambda", 0);
     approx_method = configSettings.Read("approximation_method", approx_method);
     file_name = "../data/" + configSettings.Read("use_file_name", file_name);
@@ -82,7 +82,15 @@ int main(int argc, char* argv[]) {
     Test::compute_error(choice_f, X_test, Y_test, N_test);
 
     data_handler.data_reader(mat_file);
+    X_mat = data_handler.get_data_x();
     Y_mat = data_handler.get_data_y();
+
+    // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
+    if (approx_method == "dct") {
+        Y = data_handler.gen_y(choice_f, N_test, X_mat);
+        Fitter approx_ft(X_mat, Y);
+        Y_test = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
+    }
     Test::compute_mse(Y_test, Y_mat);
 
     return 0;
