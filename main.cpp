@@ -10,12 +10,12 @@
 #include "src/Fitter.h"
 #include "test/DataIO.h"
 #include "test/Test.h"
-#include "test/gnuplot_i.hpp"
+#include "plot/gnuplot_i.hpp"
 
 
 int main(int argc, char* argv[]) {
 
-    // Define variables (see the comments in configuration file, like config.txt)
+    // Define variables (see the descriptions in configuration file, like config.txt)
     int use_file;
     int choice_f;
     int choice_node;
@@ -37,8 +37,9 @@ int main(int argc, char* argv[]) {
         config_file_name = argv[1];
     }
     else {
-        config_file_name = "../config/config.txt"; // default name for configuration file
+        config_file_name = "config.txt"; // default name for configuration file
     }
+    config_file_name = "../config/" + config_file_name;
     Config configSettings(config_file_name);
 
     use_file = configSettings.Read("use_file", 0);
@@ -57,6 +58,8 @@ int main(int argc, char* argv[]) {
     poly_lambda = configSettings.Read("polynomial_lambda", 0);
     matlab_file = configSettings.Read("MATLAB_generated_file_name", matlab_file);
 
+    file_name = "../data/" + file_name;
+    out_file = "../data/" + out_file;
 
     std::vector<double> X;
     std::vector<double> Y;
