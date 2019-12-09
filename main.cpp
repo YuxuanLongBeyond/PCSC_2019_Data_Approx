@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) {
     // write the test data with interpolated values
     DataIO::data_writer(out_file, X_test, Y_test);
     Test::print_error_function(choice_f, X_test, Y_test, N_test);
-//    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
+    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
 
     return 0;
 }

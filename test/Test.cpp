@@ -2,14 +2,17 @@
 // Created by yiting on 07.12.19.
 //
 
+#include <stdexcept>
 #include "Test.h"
 #include <cmath>
-#include <cassert>
 #include "../src/Fitter.h"
 
 Test::Test() = default;
 
 std::vector<double> Test::approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const{
+    if (approx_method != "polynomial" && approx_method != "interpolation" && approx_method != "spline" && approx_method != "dct"){
+        throw std::invalid_argument("Invalid input approximation method!");
+    }
     std::vector<double> Y_test;
     std::vector<double> w;
     if (approx_method == "polynomial"){
@@ -30,6 +33,15 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
 }
 
 void Test::print_error_function(int choice_f, std::vector<double> x_test, std::vector<double> y_test, int N_test) {
+    if (choice_f != 1 && choice_f != 2 && choice_f != 3){
+        throw std::invalid_argument("Invalid input choice for function type!");
+    }
+    if (x_test.size() != y_test.size()){
+        throw std::invalid_argument("Incompatible data size!");
+    }
+    if (N_test < 2) {
+        throw std::invalid_argument("Too little input test samples!");
+    }
     double e = 0.0;
     std::vector<double> y_real(N_test); // ground-truth data y
     for (int i = 0; i < N_test; i++){
