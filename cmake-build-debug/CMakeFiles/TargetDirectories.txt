@@ -1,3 +1,0 @@
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/YuxuanLong/Desktop/MATH458/PCSC_2019_Data_Approx/cmake-build-debug/CMakeFiles/project.dir
