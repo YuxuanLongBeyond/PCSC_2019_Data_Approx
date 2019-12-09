@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "test/Config.h"
+#include "config/Config.h"
 #include <cmath>
 #include <stdexcept>
 #include "src/Matrix.h"
@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
         config_file_name = argv[1];
     }
     else {
-        config_file_name = "config.txt"; // default name for configuration file
+        config_file_name = "../config/config.txt"; // default name for configuration file
     }
     Config configSettings(config_file_name);
 
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]) {
     file_name = configSettings.Read("use_file_name", file_name);
     out_file = configSettings.Read("out_file_name", out_file);
     poly_degree = configSettings.Read("polynomial_degree", 2);
-    poly_lambda = configSettings.Read("polynomial_lambda", 0.001);
+    poly_lambda = configSettings.Read("polynomial_lambda", 0);
     matlab_file = configSettings.Read("MATLAB_generated_file_name", matlab_file);
 
 
