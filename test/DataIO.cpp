@@ -16,9 +16,11 @@ void DataIO::data_reader(std::string &file_name) {
     double x;
     double y;
     while(!infile.eof()){
-        infile >> x >> y;
-        data_x.push_back(x);
-        data_y.push_back(y);
+        if(infile.get()){// detect the empty line in the file
+            infile >> x >> y;
+            data_x.push_back(x);
+            data_y.push_back(y);
+        }
     }
 //    std::cout << data_x.size() << std::endl;
     infile.close();
