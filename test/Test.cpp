@@ -10,7 +10,7 @@
 Test::Test() = default;
 
 std::vector<double> Test::approx_test(const std::string& approx_method, const Fitter& approx, std::vector<double> X_test, int poly_degree, double poly_lambda) const{
-    if (approx_method != "polynomial" && approx_method != "interpolation" && approx_method != "spline" && approx_method != "dct"){
+    if (approx_method != "polynomial" && approx_method != "interp1" && approx_method != "spline" && approx_method != "dct"){
         throw std::invalid_argument("Invalid input approximation method!");
     }
     std::vector<double> Y_test;
@@ -50,7 +50,7 @@ void Test::compute_error(int choice_f, std::vector<double> x_test, std::vector<d
         if (choice_f == 1){
             y_real[i] = cos(3.0 * x_test[i] * M_PI);
         }
-        if (choice_f == 2){
+        else if(choice_f == 2){
             y_real[i] = 1.0 / (1.0 + x_test[i] * x_test[i]);
         }
         else{

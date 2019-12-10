@@ -90,7 +90,7 @@ std::vector<double> DataIO::gen_y(int choice_f, int N_gen, std::vector<double> x
         if(choice_f == 1){
             y_gen[i] = cos(3.0 * x_gen[i] * M_PI);
         }
-        if(choice_f == 2){
+        else if(choice_f == 2){
             y_gen[i] = 1.0 / (1.0 + x_gen[i] * x_gen[i]);
         }
         else{
