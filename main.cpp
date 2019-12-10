@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     int N_gen = configSettings.Read("num_input_points", 41);
     int N_test = configSettings.Read("num_test_points", 1001);
     int choice_node = configSettings.Read("node_type", 1);
-    int poly_degree = configSettings.Read("polynomial_degree", 20);
+    int poly_degree = configSettings.Read("polynomial_degree", 2);
     double x_min = configSettings.Read("x_input_min", -10);
     double x_max = configSettings.Read("x_input_max", 10);
     double x_test_min = configSettings.Read("x_test_min", -10);
