@@ -1,4 +1,8 @@
-# PCSC_2019_Data_Approx  
+# PCSC Data Approximation 2019  
+Group 5: Yuxuan Long, Yiting Zhang
+  
+  
+  
 This project focuses on implementation of basic data fitting algorithms in C++, which involve four methods:  
 1. Polynomial fitting  
 2. Linear piecewise polynomial fitting  
