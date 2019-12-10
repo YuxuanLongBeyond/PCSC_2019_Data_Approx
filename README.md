@@ -9,13 +9,17 @@ This project focuses on implementation of basic data fitting algorithms in C++, 
 3. Cubic spline  
 4. Fourier interpolation  
 
-### Configuration File
-The input parameters (in bold) are defined in the configuration file in the folder *config*. An example config.txt is already included by default. New configuration file can be created, where its name can be passed to the main function as the first argument. If no argment is provided, the default configuration (in config.txt) will be used. If the codes have been compiled as "project", an example command for running the code can be:  
+### Configuration
+The input parameters (in bold) are defined in the configuration file in the folder *config*. An example config.txt is already included by default. New configuration file can be created, where its name can be passed to the main function as the first argument.  
+If no argment is provided, the default configuration (in config.txt) will be used.  
+If the codes have been compiled as "project", an example command for running the project can be:  
 `./project YourNewConfigFile.txt`  
 The following instructions are all about the specific parameter setup in configuration file.  
 
 ### Data Aquisition  
-The user has two options to the access of the input data. Set **use_file** = 0 (by default),  then the program will generate data by writing a new file. Otherwise, the user has to provide his/her own data file (not recommended). In both cases, **use_file_name** is the file name. By default, we set **use_file_name** = data.dat.  
+The user has two options to the access of the input data.  
+Set **use_file** = 0 (by default), then the program will generate data by writing a new file. Otherwise, the user has to provide his/her own data file (not recommended).  
+In both cases, **use_file_name** is the file name. By default, we set **use_file_name** = data.dat.  
 In this project, all the data files contain two columns, which correspond to x and y values.
 
 ### Input Data Generation
@@ -27,7 +31,7 @@ If we set **use_file** = 0, there are several parameters to be specified:
 
 ### Fitting Methods
 To use one specific method, assign the method name to the parameter *approximation_method*.  
-For polynomial fitting, we set **approximation_method** = polynomial. In the configuration file, this method has two relevant parameters:  
+For polynomial fitting, we set **approximation_method** = polynomial. This method has two relevant parameters:  
 1. **polynomial_degree**, which controls the degree of the polynomial.  
 2. **polynomial_lambda**, small non-negative number to be added on the diagonal when solving the linear system. By default, it is zero.  
 
