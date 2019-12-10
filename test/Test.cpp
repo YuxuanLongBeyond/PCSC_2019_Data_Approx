@@ -70,8 +70,10 @@ void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab)
     double mse = 0.0;
     int N = Y_test.size();
     for (int i = 0; i < N; i++){
+        // calculate the sum of square of error
         mse = mse + pow((Y_test[i] - Y_matlab[i]),2);
     }
+    // calculate the mean value
     mse = mse / N;
     std::cout << "The MSE between data approximated by our implementation and Matlab built-in functions is " << mse << std::endl;
 }

@@ -45,6 +45,11 @@ public:
      */
     static void compute_error(int choice_f, std::vector<double> x, std::vector<double> y, int N_test);
 
+    /**
+     * Print the MSE between the interpolated values from approximation by C++ code and MATLAB for code debugging
+     * @param Y_test 1D vector Y approximated from corresponding data X by C++ code
+     * @param Y_matlab 1D vector Y approximated from corresponding data X by MATLAB
+     */
     static void compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
 
 };

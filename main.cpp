@@ -30,6 +30,8 @@ int main(int argc, char* argv[]) {
 
     // Define variables from configuration file (see the descriptions in example config.txt)
     int use_file = configSettings.Read("use_file", 0);
+    int use_debug_mode = configSettings.Read("use_debug_mode", 0);
+    int use_gnuplot = configSettings.Read("use_gnuplot",0);
     int choice_f = configSettings.Read("function_type", 2);
     int N_gen = configSettings.Read("num_input_points", 41);
     int N_test = configSettings.Read("num_test_points", 1001);
@@ -77,21 +79,29 @@ int main(int argc, char* argv[]) {
     std::cout << "Writing X_test with the approximated data Y_test into " << out_file << std::endl;
     DataIO::data_writer(out_file, X_test, Y_test);
 
-//    Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
-
     Test::compute_error(choice_f, X_test, Y_test, N_test);
 
-    data_handler.data_reader(mat_file);
-    X_mat = data_handler.get_data_x();
-    Y_mat = data_handler.get_data_y();
+    if (use_debug_mode){
+        std::cout << "Debug mode is open" << std::endl;
+        data_handler.data_reader(mat_file);
+        X_mat = data_handler.get_data_x();
+        Y_mat = data_handler.get_data_y();
 
-    // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
-    if (approx_method == "dct") {
-        Y = data_handler.gen_y(choice_f, N_test, X_mat);
-        Fitter approx_ft(X_mat, Y);
-        Y_test = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
+        // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
+        if (approx_method == "dct") {
+            Y_test = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
+        }
+        Test::compute_mse(Y_test, Y_mat);
+
     }
-    Test::compute_mse(Y_test, Y_mat);
+    else{
+        std::cout << "Debug mode is closed" << std::endl;
+    }
+
+    if (use_gnuplot){
+        std::cout << "Using GNUPLOT to plot the data" << std::endl;
+        Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);
+    }
 
     return 0;
 }
