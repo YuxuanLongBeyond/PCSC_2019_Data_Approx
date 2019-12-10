@@ -87,17 +87,16 @@ int main(int argc, char* argv[]) {
         X_mat = data_handler.get_data_x();
         Y_mat = data_handler.get_data_y();
 
+        std::vector<double> Y_test_new = Y_test;
         // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
         if (approx_method == "dct") {
-            Y_test = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
+            Y_test_new = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
         }
-        Test::compute_mse(Y_test, Y_mat);
+        Test::compute_mse(Y_test_new, Y_mat);
 
     }
-    else{
-        std::cout << "Debug mode is closed" << std::endl;
-    }
 
+    // The following GNU plot is not related to the debug mode
     if (use_gnuplot){
         std::cout << "Using GNUPLOT to plot the data" << std::endl;
         Gnuplot g1 = Gnuplot("approx", "origin", "points", "X", "Y", X_test, Y_test, X, Y);

@@ -206,7 +206,30 @@ std::vector<double> Fitter::dct_fit() const {
         throw std::invalid_argument("Too little input samples");
     }
 
-    // compute DCT coefficients
+    int num;
+    if (remainder(N, 2) == 0) {
+        num = N / 2 + 1;
+    }
+    else {
+        num = (N + 1) / 2;
+    }
+
+    // compute DCT coefficients for real (a_k) and imaginary (b_k) parts respectively
+    std::vector<double> w;
+    double a_k, b_k;
+    for (int k = 0; k < num; k ++) {
+        a_k = 0.0; b_k = 0.0;
+        for (int n = 0; n < N; n ++) {
+            a_k += data_y[n] * cos(2.0 * M_PI * (double)k * (double)n / (double)N);
+            b_k += - data_y[n] * sin(2.0 * M_PI * (double)k * (double)n / (double)N);
+        }
+        w.push_back(a_k / (double)N);
+        w.push_back(b_k / (double)N);
+    }
+    return w;
+}
+
+std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>& x_test) const {
     int num;
     int index;
     if (remainder(N, 2) == 0) {
@@ -218,22 +241,6 @@ std::vector<double> Fitter::dct_fit() const {
         index = num;
     }
 
-    std::vector<double> w;
-    double a_k;
-    for (int k = 0; k < num; k ++) {
-        a_k = 0.0;
-        for (int n = 0; n < N; n ++) {
-            a_k += data_y[n] * cos(2.0 * M_PI * (double)k * (double)n / (double)N);
-        }
-        if ((k > 0) && (k < index)) {
-            a_k *= 2.0;
-        }
-        w.push_back(a_k / (double)N);
-    }
-    return w;
-}
-
-std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>& x_test) const {
     // assume the data is evenly placed
     double x0 = data_x[0];
     double interval = (data_x[N - 1] - x0) / (double)(N - 1) * (double)N;
@@ -241,10 +248,20 @@ std::vector<double> Fitter::dct_val(std::vector<double>& w, std::vector<double>&
 
     std::vector<double> y_test;
     double interp_out;
+    double angle;
+    double tem;
     for (auto v: x_test) {
         interp_out = 0.0;
-        for (int k = 0; k < w_size; k ++) {
-            interp_out += w[k] * cos(2.0 * M_PI * (double)k * (v - x0) / interval);
+        for (int k = 0; k < (w_size / 2); k ++) {
+            angle = 2.0 * M_PI * (double)k * (v - x0) / interval;
+            tem = w[2 * k] * cos(angle) - w[2 * k + 1] * sin(angle);
+            if ((k > 0) && (k <  index)) {
+                interp_out += 2.0 * tem;
+            }
+            else {
+                interp_out += tem;
+            }
+
         }
         y_test.push_back(interp_out);
     }

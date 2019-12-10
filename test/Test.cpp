@@ -27,6 +27,7 @@ std::vector<double> Test::approx_test(const std::string& approx_method, const Fi
     }
     if (approx_method == "dct"){
         w = approx.dct_fit();
+//        std::cout << w[0] << ' ' << w[1] << ' ' << w[2] << std::endl;
         Y_test = approx.dct_val(w, X_test);
     }
     return Y_test;
