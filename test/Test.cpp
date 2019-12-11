@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "Test.h"
 #include <cmath>
+#include <vector>
 #include "../src/Fitter.h"
 
 Test::Test() = default;
@@ -77,4 +78,22 @@ void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab)
     // calculate the mean value
     mse = mse / N;
     std::cout << "The MSE between data approximated by our implementation and Matlab built-in functions is " << mse << std::endl;
+}
+
+void Test::debug(int use_debug_mode, int N_test, int poly_degree, double poly_lambda, const std::vector<double>& Y_test, const std::string& mat_file, const std::string& approx_method, const Test& test, const Fitter& approx, DataIO data_handler){
+    if (use_debug_mode){
+        std::cout << "Debug mode is open" << std::endl;
+        std::vector<double> X_mat(N_test); std::vector<double> Y_mat(N_test); // Matlab data
+        data_handler.data_reader(const_cast<std::string &>(mat_file));
+        X_mat = data_handler.get_data_x();
+        Y_mat = data_handler.get_data_y();
+
+        std::vector<double> Y_test_new = Y_test;
+        // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
+        if (approx_method == "dct") {
+            Y_test_new = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
+        }
+        Test::compute_mse(Y_test_new, Y_mat);
+
+    }
 }

@@ -81,20 +81,7 @@ int main(int argc, char* argv[]) {
 
     Test::compute_error(choice_f, X_test, Y_test, N_test);
 
-    if (use_debug_mode){
-        std::cout << "Debug mode is open" << std::endl;
-        data_handler.data_reader(mat_file);
-        X_mat = data_handler.get_data_x();
-        Y_mat = data_handler.get_data_y();
-
-        std::vector<double> Y_test_new = Y_test;
-        // Fourier interpolation is a special one that uses different X_test to match with Matlab's built-in function
-        if (approx_method == "dct") {
-            Y_test_new = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
-        }
-        Test::compute_mse(Y_test_new, Y_mat);
-
-    }
+    Test::debug(use_debug_mode, N_test, poly_degree, poly_lambda, Y_test, mat_file, approx_method, test, approx, data_handler);
 
     // The following GNU plot is not related to the debug mode
     if (use_gnuplot){

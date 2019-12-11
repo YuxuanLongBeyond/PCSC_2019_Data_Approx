@@ -9,6 +9,7 @@
 #include <fstream>
 #include <vector>
 #include "../src/Fitter.h"
+#include "DataIO.h"
 /**
  * This class is used for approximating test data and analysis of the result of data approximation
  * The main functions of this class are:
@@ -51,6 +52,8 @@ public:
      * @param Y_matlab 1D vector Y approximated from corresponding data X by MATLAB
      */
     static void compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
+
+    static void debug(int use_debug_mode, int N_test, int poly_degree, double poly_lambda, const std::vector<double>& Y_test, const std::string& mat_file, const std::string& approx_method, const Test& test, const Fitter& approx, DataIO data_handler);
 
 };
 
