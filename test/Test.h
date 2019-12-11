@@ -53,6 +53,19 @@ public:
      */
     static void compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab);
 
+    /**
+     * The debug mode to test the data approximation result with Matlab built-in functions
+     * @param use_debug_mode whether or not use debug mode
+     * @param N_test number of test data points
+     * @param poly_degree degree of polynomial being approximated
+     * @param poly_lambda small non-negative number to be added on the diagonal when solving the linear system
+     * @param Y_test 1D vector Y approximated from corresponding data X by C++ code
+     * @param mat_file file name of the data file generated from Matlab built-in functions
+     * @param approx_method the name of the data fitting method
+     * @param test
+     * @param approx the fitter used for approximation
+     * @param data_handler the data handler read the 2D input data X and Y from a given data file
+     */
     static void debug(int use_debug_mode, int N_test, int poly_degree, double poly_lambda, const std::vector<double>& Y_test, const std::string& mat_file, const std::string& approx_method, const Test& test, const Fitter& approx, DataIO data_handler);
 
 };
