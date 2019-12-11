@@ -3,4 +3,4 @@ project(project)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(project main.cpp src/Matrix.h src/Matrix.cpp src/Fitter.cpp src/Fitter.h test/DataIO.cpp test/DataIO.h plot/gnuplot_i.cpp plot/gnuplot_i.hpp config/Config.cpp config/Config.h test/Test.cpp test/Test.h)
+add_executable(project main.cpp src/Matrix.h src/Matrix.cpp src/Fitter.cpp src/Fitter.h test/DataIO.cpp test/DataIO.h plot/gnuplot_i.cpp plot/gnuplot_i.hpp config/Config.cpp config/Config.h test/Test.cpp test/Test.h test/Debug.cpp)

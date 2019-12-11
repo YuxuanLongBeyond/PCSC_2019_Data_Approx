@@ -65,7 +65,7 @@ void Test::compute_error(int choice_f, std::vector<double> x_test, std::vector<d
     std::cout << "The error of the approximation w.r.t. the true data is "<< e << std::endl;
 }
 
-void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
+double Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
     if (Y_test.size() != Y_matlab.size()){
         throw std::invalid_argument("Incompatible data size!");
     }
@@ -78,10 +78,12 @@ void Test::compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab)
     // calculate the mean value
     mse = mse / N;
     std::cout << "The MSE between data approximated by our implementation and Matlab built-in functions is " << mse << std::endl;
+    return mse;
 }
 
-void Test::debug(int use_debug_mode, int N_test, int poly_degree, double poly_lambda, const std::vector<double>& Y_test, const std::string& mat_file, const std::string& approx_method, const Test& test, const Fitter& approx, DataIO data_handler){
+void Test::debug(int use_debug_mode, int N_test, int poly_degree, double poly_lambda, const std::vector<double>& Y_test, const std::string& mat_file, const std::string& approx_method, Test test, const Fitter& approx, DataIO data_handler){
     if (use_debug_mode){
+        double mse;
         std::cout << "Debug mode is open" << std::endl;
         std::vector<double> X_mat(N_test); std::vector<double> Y_mat(N_test); // Matlab data
         data_handler.data_reader(const_cast<std::string &>(mat_file));
@@ -93,7 +95,7 @@ void Test::debug(int use_debug_mode, int N_test, int poly_degree, double poly_la
         if (approx_method == "dct") {
             Y_test_new = test.approx_test(approx_method, approx, X_mat, poly_degree, poly_lambda);
         }
-        Test::compute_mse(Y_test_new, Y_mat);
+        mse = test.compute_mse(Y_test_new, Y_mat);
 
     }
 }
