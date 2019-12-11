@@ -4,10 +4,10 @@ Group 5: Yuxuan Long, Yiting Zhang
   
   
 This project focuses on implementation of basic data fitting algorithms in C++, which involve four methods:  
-1. Polynomial fitting  
-2. Linear piecewise polynomial fitting  
-3. Cubic spline  
-4. Fourier interpolation  
+1. Polynomial interpolation 
+2. Linear piecewise polynomial interpolation
+3. Cubic spline
+4. Fourier interpolation
 
 ### Configuration
 The input parameters are defined in the configuration file in the folder *config*. An example config.txt is already included by default. New configuration file can be created, where its name can be passed to the main function as the first argument.  
@@ -31,7 +31,7 @@ If we set `use_file = 0`, there are several parameters to be specified:
 
 ### Fitting Methods
 To use one specific method, assign the method name to the parameter *approximation_method*.  
-For polynomial fitting, we set `approximation_method = polynomial`. This method has two relevant parameters:  
+For polynomial interpolation, we set `approximation_method = polynomial`. This method has two relevant parameters:  
 1. `polynomial_degree`, which controls the degree of the polynomial.  
 2. `polynomial_lambda`, small non-negative number to be added on the diagonal when solving the linear system. By default, it is zero.  
 
