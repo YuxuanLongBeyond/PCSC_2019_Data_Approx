@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
     int N_gen = configSettings.Read("num_input_points", 41);
     int N_test = configSettings.Read("num_test_points", 1001);
     int choice_node = configSettings.Read("node_type", 1);
-    int poly_degree = configSettings.Read("polynomial_degree", 2);
+    int poly_degree = configSettings.Read("polynomial_degree", 20);
     double x_min = configSettings.Read("x_input_min", -10);
     double x_max = configSettings.Read("x_input_max", 10);
     double x_test_min = configSettings.Read("x_test_min", -10);
@@ -46,7 +46,6 @@ int main(int argc, char* argv[]) {
     file_name = "../data/" + configSettings.Read("use_file_name", file_name);
     out_file = "../data/" + configSettings.Read("out_file_name", out_file);
     mat_file = "../data/" + configSettings.Read("MATLAB_generated_file_name", mat_file);
-
     std::vector<double> X; std::vector<double> Y; // input data
     std::vector<double> X_test(N_test); std::vector<double> Y_test(N_test); // test data
     std::vector<double> X_mat(N_test); std::vector<double> Y_mat(N_test); // Matlab data

@@ -13,5 +13,5 @@ x_test_max=10
 node_type=1  # 1 for uniform distribution; 2 for CGL nodes
 approximation_method=polynomial  # 'polynomial' or 'interp1' or 'spline' or 'dct'
 out_file_name=Output.dat # name of output data file
-polynomial_degree=2  # degree of polynomial
+polynomial_degree=20  # degree of polynomial
 polynomial_lambda=0 # for ridge regression
