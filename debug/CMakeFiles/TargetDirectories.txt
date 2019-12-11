@@ -1,3 +1,0 @@
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/debug/CMakeFiles/rebuild_cache.dir
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/debug/CMakeFiles/executeTests.dir
-/home/yiting/Documents/yiting/PCSC_project/PCSC_2019_Data_Approx/debug/CMakeFiles/edit_cache.dir
