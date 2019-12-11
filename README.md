@@ -31,7 +31,7 @@ If we set `use_file = 0`, there are several parameters to be specified:
 
 ### Fitting Methods
 To use one specific method, assign the method name to the parameter *approximation_method*.  
-For polynomial fitting, we set **approximation_method** = polynomial. This method has two relevant parameters:  
+For polynomial fitting, we set `approximation_method = polynomial`. This method has two relevant parameters:  
 1. `polynomial_degree`, which controls the degree of the polynomial.  
 2. `polynomial_lambda`, small non-negative number to be added on the diagonal when solving the linear system. By default, it is zero.  
 
