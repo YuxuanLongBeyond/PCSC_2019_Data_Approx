@@ -37,7 +37,6 @@ plot(x_test, y_spline)
 plot(x_test_ft, y_ft)
 plot(x_test, y_test)
 legend('Polynomial', 'Linear piecewise', 'spline', 'Fourier', 'Ground truth')
-% legend('ft', 'gt')
 
 var_poly = [x_test' y_poly'];
 var_interp = [x_test' y_interp'];
@@ -48,6 +47,6 @@ save('poly_Matlab.dat', 'var_poly', '-ascii')
 save('interp_Matlab.dat', 'var_interp', '-ascii')
 save('spline_Matlab.dat', 'var_spline', '-ascii')
 save('ft_Matlab.dat', 'var_ft', '-ascii')
-save('gt_Matlab.dat', 'var_gt', '-ascii')
+% save('gt_Matlab.dat', 'var_gt', '-ascii')
 
 
