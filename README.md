@@ -9,6 +9,14 @@ This project focuses on implementation of basic data fitting algorithms in C++, 
 3. Cubic spline
 4. Fourier interpolation
 
+### Root Structure
+*config*---contains configuration files and configuration class.  
+*data*---contains data files and Matlab script (for reference data generation in debug mode).  
+*doc*---stores the documentation from Doxygen.  
+*plot*---contains plot methods by Gnuplot and Matlab.  
+*src*---contains source files for the implementation of the main algorithms.  
+*test*---contains data IO handling (include data generation) and test.
+
 ### Configuration
 The input parameters are defined in the configuration file in the folder *config*. An example config.txt is already included by default. New configuration file can be created, where its name can be passed to the main function as the first argument.  
 If no argment is provided, the default configuration (in config.txt) will be used.  
@@ -55,10 +63,4 @@ Alternatively, run matlab_plot.m in folder *plot* will plot the results from def
 Open debug mode if we set `use_debug_mode = 1`. In debug mode, it will compute the deviation between data approximated by our implementation and Matlab built-in function. 
 In this mode, the parameter `MATLAB_generated_file_name` should be set, as the name of the output data file generated from Matlab built-in function.
 
-### Root Structure
-*config*---contains configuration files and configuration class.  
-*data*---contains data files and Matlab script (for reference data generation in debug mode).  
-*doc*---stores the documentation from Doxygen.  
-*plot*---contains plot methods by Gnuplot and Matlab.  
-*src*---contains source files for the implementation of the main algorithms.  
-*test*---contains data IO handling (include data generation) and test suite.
+
