@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <cmath>
 #include "DataIO.h"
+#include <cstring>
 
 DataIO::DataIO() = default;
 
@@ -16,13 +17,14 @@ void DataIO::data_reader(std::string &file_name) {
     double x;
     double y;
     while(!infile.eof()){
-        if(infile.get()){// detect the empty line in the file
+        char c;
+        infile.get(c);
+        if(c != '\n'){// detect the empty line in the file
             infile >> x >> y;
             data_x.push_back(x);
             data_y.push_back(y);
         }
     }
-//    std::cout << data_x.size() << std::endl;
     infile.close();
 }
 
@@ -39,6 +41,7 @@ void DataIO::data_writer(std::string &file_name, std::vector<double> x, std::vec
         throw std::invalid_argument("Incompatible data size!");
     }
     int N_gen = x.size();
+
     std::ofstream generate_data(file_name);
     if (!generate_data.is_open()){
         throw std::invalid_argument("Can't open file!");

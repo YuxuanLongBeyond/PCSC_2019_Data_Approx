@@ -71,7 +71,6 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Generating test data X_test" << std::endl;
     X_test = data_handler.gen_x_test(N_test, x_test_min, x_test_max);
-
     std::cout << "Data approximation using " << approx_method << std::endl;
     Y_test = test.approx_test(approx_method, approx, X_test, poly_degree, poly_lambda);
 
