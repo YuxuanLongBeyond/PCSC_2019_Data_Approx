@@ -3,8 +3,8 @@
 #include <stdexcept>
 #include <vector>
 #include "src/Fitter.h"
-#include "test/DataIO.h"
-#include "test/Experiment_Test.h"
+#include "experiment/DataIO.h"
+#include "experiment/Experiment_Test.h"
 #include "plot/gnuplot_i.hpp"
 
 
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         config_file_name = "config.txt"; // default name for configuration file
         std::cout << "No argument provided, the default configuration file " << config_file_name << " is to be used" << std::endl;
     }
-    config_file_name = "../config/" + config_file_name;
+    config_file_name = "../../core/config/" + config_file_name;
     std::cout << "Loading parameters from " << config_file_name << std::endl;
     Config configSettings(config_file_name);
 
@@ -41,8 +41,8 @@ int main(int argc, char* argv[]) {
     double x_test_max = configSettings.Read("x_test_max", 10);
     double poly_lambda = configSettings.Read("polynomial_lambda", 0);
     approx_method = configSettings.Read("approximation_method", approx_method);
-    file_name = "../data/" + configSettings.Read("use_file_name", file_name);
-    out_file = "../data/" + configSettings.Read("out_file_name", out_file);
+    file_name = "../../core/data/" + configSettings.Read("use_file_name", file_name);
+    out_file = "../../core/data/" + configSettings.Read("out_file_name", out_file);
     std::vector<double> X; std::vector<double> Y; // input data
     std::vector<double> X_test(N_test); std::vector<double> Y_test(N_test); // test data
     std::vector<double> X_mat(N_test); std::vector<double> Y_mat(N_test); // Matlab data

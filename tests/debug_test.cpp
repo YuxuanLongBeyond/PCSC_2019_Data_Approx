@@ -3,8 +3,8 @@
 //
 #include <gtest/gtest.h>
 #include <iostream>
-#include "../core/test/DataIO.h"
-#include "../core/test/Experiment_Test.h"
+#include "../core/experiment/DataIO.h"
+#include "../core/experiment/Experiment_Test.h"
 #include <cmath>
 
 int choice_node = 1;

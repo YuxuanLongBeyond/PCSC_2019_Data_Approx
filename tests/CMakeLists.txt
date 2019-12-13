@@ -18,15 +18,9 @@ add_executable(int_test
         main.cpp
         debug_test.cpp
         ${project_src}
-        ../core/test/DataIO.h
-        ../core/test/DataIO.cpp
-        ../core/test/Experiment_Test.h
-        ../core/test/Experiment_Test.cpp)
-#add_executable(google_test main.cpp debug_test.cpp ../project/test/DataIO.h ../project/test/DataIO.cpp)
-
-#add_custom_command(TARGET int_test POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_directory
-#        ${CMAKE_CURRENT_SOURCE_DIR}/matlab_data
-#        ${CMAKE_CURRENT_BINARY_DIR}/matlab_data)
+        ../core/experiment/DataIO.h
+        ../core/experiment/DataIO.cpp
+        ../core/experiment/Experiment_Test.h
+        ../core/experiment/Experiment_Test.cpp)
 
 target_link_libraries(int_test gtest gtest_main)
