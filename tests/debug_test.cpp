@@ -7,20 +7,26 @@
 #include "../core/experiment/Experiment_Test.h"
 #include <cmath>
 
-int choice_node = 1;
-int N_gen = 41;
+// Setting fixed parameters as global variables
+int choice_node = 1; // 1 for uniform distribution; 2 for CGL nodes
+int N_gen = 41; // number of input points
 double x_min = -10;
 double x_max = 10;
-int choice_f = 2;
-int N_test = 1001;
-int poly_degree = 20;
+int choice_f = 2; // 1 for trigonometric; 2 for Runge; 3 for polynomial
+int N_test = 1001; // number of test points
+int poly_degree = 20; // polynomial degree
 double x_test_min = -10;
 double x_test_max = 10;
-double poly_lambda = 0;
+double poly_lambda = 0; // polynomial lambda
 
-double tol = 1e-7;
+double tol = 1e-7; // the tolerance for passing a test
 
-
+/**
+ *
+ * @param Y_test Approximated function values by our implementation
+ * @param Y_matlab Approximated results by Matlab
+ * @return MSE error between these two results
+ */
 double compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
     if (Y_test.size() != Y_matlab.size()){
         throw std::invalid_argument("Incompatible data size!");
@@ -37,7 +43,12 @@ double compute_mse(std::vector<double> Y_test, std::vector<double> Y_matlab) {
     return mse;
 }
 
-
+/**
+ *
+ * @param approx_method the name of the approximation method
+ * @param mat_file the directory of the Matlab data file
+ * @return the computed MSE between our results and Matlab results
+ */
 double compute_debug_mse(std::string& approx_method, std::string& mat_file) {
 
     std::vector<double> X; std::vector<double> Y; // input data
@@ -65,7 +76,6 @@ double compute_debug_mse(std::string& approx_method, std::string& mat_file) {
 }
 
 TEST(DebugTest, Poly_Test) {
-
     double mse;
     std::string approx_method = "polynomial";
     std::string mat_file = "../../tests/matlab_data/poly_Matlab.dat";
