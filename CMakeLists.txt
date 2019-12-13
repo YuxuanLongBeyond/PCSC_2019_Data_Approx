@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 3.15)
-project(project)
+project(Integration)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(project main.cpp src/Matrix.h src/Matrix.cpp src/Fitter.cpp src/Fitter.h test/DataIO.cpp test/DataIO.h plot/gnuplot_i.cpp plot/gnuplot_i.hpp config/Config.cpp config/Config.h test/Test.cpp test/Test.h)
+add_subdirectory(tests)
+add_subdirectory(core)
+
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    add_custom_target(docs ALL
+            COMMAND ${DOXYGEN_EXECUTABLE} Doxyfile
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            COMMENT "Generate the docs")
+endif (DOXYGEN_FOUND)
